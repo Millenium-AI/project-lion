@@ -13,7 +13,7 @@ import {
   Radar,
 } from 'lucide-react';
 import { oracles, Oracle } from '@/data';
-import { Pill, Card, Chip, Tag, Trend, EmptyState } from '@/components/ui';
+import { Pill, Card, Chip, Tag, Trend, EmptyState, PageHeader } from '@/components/ui';
 import { Modal, ScanModal } from '@/components/Modal';
 
 export function OracleTab() {
@@ -60,6 +60,11 @@ export function OracleTab() {
   return (
     <>
       <div className="space-y-6">
+        <PageHeader
+          title="Forecast with context"
+          sub="Use Oracle as a research companion layered on top of real price and listing data."
+        />
+
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
           <div className="space-y-4">
             <Card className="overflow-hidden">
@@ -69,11 +74,10 @@ export function OracleTab() {
                     Oracle layer
                   </div>
                   <h2 className="text-2xl font-semibold tracking-tight max-w-2xl">
-                    Oracle should support the marketplace, not overshadow it.
+                    Your personal card forecasts, ranked by confidence.
                   </h2>
                   <p className="text-sm text-text-muted mt-3 max-w-2xl leading-relaxed">
-                    Your screenshot has the right visual tone, but on the website this page should feel like a research
-                    companion layered on top of real price and listing behavior.
+                    Ask Oracle about a card and get a forecast grounded in current listings and price history.
                   </p>
 
                   <div className="mt-5 inline-flex rounded-card border border-border bg-surface p-1 w-full max-w-[420px]">
@@ -129,8 +133,8 @@ export function OracleTab() {
                     />
                     <InsightBlock
                       icon={<AlertTriangle size={14} className="text-negative" />}
-                      title="Do not over-lead with AI"
-                      sub="The product should still feel market-led, not chatbot-led."
+                      title="Treat as a signal, not a guarantee"
+                      sub="Forecasts reflect current trends and can shift as new listings come in."
                     />
                   </div>
                 </div>
@@ -177,10 +181,9 @@ export function OracleTab() {
             </Card>
 
             <Card className="p-4">
-              <div className="text-sm font-semibold mb-3">Best website upgrade next</div>
+              <div className="text-sm font-semibold mb-3">How forecasts are built</div>
               <p className="text-sm text-text-muted leading-relaxed">
-                Oracle should eventually cross-link into Buy and Price so each forecast can reference live listings,
-                local zip activity, and collection exposure.
+                Each forecast references live listings, recent price movement, and local demand for that card.
               </p>
             </Card>
           </div>

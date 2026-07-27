@@ -69,8 +69,7 @@ export function CrowdTab() {
             </div>
             <h2 className="text-2xl font-semibold tracking-tight max-w-2xl">{featured.title}</h2>
             <p className="text-sm text-text-muted mt-3 max-w-2xl leading-relaxed">
-              The best version of Crowd should feel like the main collector conversation layer inside Lion Market,
-              not an afterthought under Oracle.
+              The top thread from local collectors right now, based on upvotes and reply activity.
             </p>
 
             <div className="flex flex-wrap items-center gap-2 mt-4">

@@ -11,7 +11,7 @@ import {
   Clock3,
 } from 'lucide-react';
 import { conversations, Conversation } from '@/data';
-import { Pill, Card, Avatar, EmptyState, Tag } from '@/components/ui';
+import { Pill, Card, Avatar, EmptyState, Tag, PageHeader } from '@/components/ui';
 
 const SUGGESTED = [
   'Sounds good, see you there.',
@@ -45,6 +45,11 @@ export function MsgTab() {
 
   return (
     <div className="space-y-6">
+      <PageHeader
+        title="Keep deals moving"
+        sub="Handle negotiations, pickups, and follow-ups from one messaging workspace."
+      />
+
       <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
         <aside className="space-y-4">
           <Card className="p-4">
@@ -100,7 +105,7 @@ export function MsgTab() {
             <div className="px-4 py-3.5 border-b border-border">
               <div className="text-sm font-semibold">Inbox</div>
               <div className="text-xs text-text-faint mt-1">
-                Website version should feel like a real deal desk, not just a mobile message list.
+                {filtered.length} conversation{filtered.length === 1 ? '' : 's'}
               </div>
             </div>
 
@@ -260,7 +265,7 @@ export function MsgTab() {
                   <div>
                     <div className="text-sm font-semibold">Deal context</div>
                     <div className="text-xs text-text-faint mt-1">
-                      This sidebar is the kind of website-only utility the mobile layout cannot really show well.
+                      Trust, location, and response details for this conversation.
                     </div>
                   </div>
 
@@ -272,7 +277,7 @@ export function MsgTab() {
                   <InfoCard
                     icon={<MapPin size={14} className="text-accent" />}
                     title="Meetup area"
-                    sub="Phoenix metro pickup zones should surface here next."
+                    sub="Central Phoenix pickup zones, chosen by both parties."
                   />
                   <InfoCard
                     icon={<Clock3 size={14} className="text-accent" />}

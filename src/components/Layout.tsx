@@ -119,7 +119,7 @@ export function Layout({
                 Active area
               </div>
               <div className="text-sm font-medium mt-2">Phoenix, AZ</div>
-              <div className="text-xs text-text-muted mt-1">Buy should eventually drill down to exact zip polygons.</div>
+              <div className="text-xs text-text-muted mt-1">Showing listings within 15 miles. Change area anytime.</div>
             </div>
           </div>
 
@@ -170,18 +170,17 @@ export function Layout({
 
           <div className="px-4 py-4 border-t border-border">
             <div className="rounded-[22px] border border-border bg-surface p-4">
-              <div className="text-sm font-semibold">Website mode</div>
+              <div className="text-sm font-semibold">Quick scan</div>
               <p className="text-xs text-text-muted mt-2 leading-relaxed">
-                The screenshots show a strong mobile product language. Desktop should keep the same brand feel but open
-                it into a real workspace, especially for Buy, Price, and Crowd.
+                Scan a card to check local listings, live pricing, and Oracle forecasts in one pass.
               </p>
 
               <button
-                onClick={() => setTab('buy')}
+                onClick={() => setScanOpen(true)}
                 className="tap mt-4 w-full rounded-[18px] bg-accent px-4 py-2.5 text-sm font-semibold text-accent-ink flex items-center justify-center gap-2"
               >
-                <MapPin size={15} />
-                Open local market
+                <ScanLine size={15} />
+                Scan a card
               </button>
             </div>
           </div>
@@ -305,31 +304,6 @@ export function Layout({
           </header>
 
           <main className="flex-1 min-w-0">
-            <section className="hidden lg:block px-8 pt-6">
-              <div className="rounded-[28px] border border-border bg-surface px-6 py-5">
-                <div className="flex items-start justify-between gap-6">
-                  <div className="min-w-0">
-                    <div className="text-[11px] uppercase tracking-[0.18em] text-text-faint font-semibold">
-                      {current.eyebrow}
-                    </div>
-                    <h1 className="text-3xl font-semibold tracking-tight mt-1">{current.title}</h1>
-                    <p className="text-sm text-text-muted mt-2 max-w-3xl leading-relaxed">{current.sub}</p>
-                  </div>
-
-                  {tab === 'buy' ? (
-                    <div className="hidden xl:flex items-center gap-2 rounded-full border border-border bg-bg px-3 py-2 text-xs text-text-muted shrink-0">
-                      <MapPin size={13} className="text-accent" />
-                      Zip boundary map belongs here
-                    </div>
-                  ) : (
-                    <div className="hidden xl:flex items-center gap-2 rounded-full border border-border bg-bg px-3 py-2 text-xs text-text-muted shrink-0">
-                      Desktop workspace
-                    </div>
-                  )}
-                </div>
-              </div>
-            </section>
-
             <section className="px-4 lg:px-8 py-4 lg:py-6 pb-24 lg:pb-8">
               <div className="mx-auto w-full max-w-[1600px]">{children}</div>
             </section>

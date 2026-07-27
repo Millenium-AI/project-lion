@@ -71,8 +71,7 @@ export function SellTab() {
               <div>
                 <h2 className="text-2xl font-semibold tracking-tight">Your local card shop profile</h2>
                 <p className="text-sm text-text-muted mt-2 max-w-2xl leading-relaxed">
-                  The mobile sell screen in your mock is clean, but the website version should act more like a
-                  storefront control center with inventory, velocity, views, and local meetup readiness.
+                  Track live inventory, listing velocity, buyer views, and meetup readiness in one place.
                 </p>
               </div>
 
@@ -120,7 +119,7 @@ export function SellTab() {
               />
               <SignalRow
                 title="Conversion"
-                sub="Bundles and meetup-ready inventory should become stronger website modules next."
+                sub="Bundled listings and meetup-ready inventory are converting fastest this week."
               />
             </div>
           </div>
@@ -186,7 +185,7 @@ export function SellTab() {
                   title={seg === 'live' ? 'No live listings yet' : seg === 'hidden' ? 'No hidden listings' : 'No sold history yet'}
                   sub={
                     seg === 'live'
-                      ? 'The screenshots show a simple empty state, but the website version should push users toward building a real storefront.'
+                      ? 'List your first card to start building your storefront.'
                       : 'When listing states change, they will show up here.'
                   }
                   action={

@@ -22,6 +22,7 @@ import {
   EmptyState,
   SectionTitle,
   FilterLabel,
+  PageHeader,
 } from '@/components/ui';
 
 const DISTANCES = ['5 mi', '15 mi', '25 mi', '50 mi'] as const;
@@ -97,6 +98,11 @@ export function BuyTab({ search }: { search: string }) {
 
   return (
     <div className="space-y-6">
+      <PageHeader
+        title="Map-first card discovery"
+        sub="Browse listings by zip, compare nearby sellers, and explore the local market visually."
+      />
+
       <div className="grid gap-6 xl:grid-cols-[300px_minmax(0,1fr)]">
         <aside className="space-y-4 xl:sticky xl:top-[104px] xl:self-start">
           <Card className="p-4">
@@ -177,8 +183,7 @@ export function BuyTab({ search }: { search: string }) {
             </div>
 
             <div className="mt-4 text-xs text-text-muted leading-relaxed">
-              Every zip is outlined so the map becomes the product. Hover should preview the area, and clicking a zip
-              should fully sync the results rail.
+              Hover a zip to preview it, or click to sync the results list to that area.
             </div>
           </Card>
         </aside>
@@ -369,11 +374,9 @@ export function BuyTab({ search }: { search: string }) {
                 <Store size={18} />
               </div>
               <div>
-                <div className="text-sm font-semibold">Why this works better as a website</div>
+                <div className="text-sm font-semibold">Can't find what you're looking for?</div>
                 <div className="text-sm text-text-muted mt-1 leading-relaxed">
-                  The mobile screenshot has the right dark/gold tone, but desktop Buy should let the map own the page.
-                  A zip-outlined canvas plus a fixed results rail makes Lion Market feel like a real local marketplace,
-                  not just a card search app.
+                  Post a wanted ad and nearby sellers will get notified when they list a match.
                 </div>
               </div>
             </div>

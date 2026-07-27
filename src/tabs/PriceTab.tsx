@@ -86,7 +86,7 @@ export function PriceTab({ search, onScan }: { search: string; onScan: () => voi
               Market pulse
             </div>
             <h2 className="text-2xl font-semibold tracking-tight max-w-2xl">
-              Real-time pricing should feel like the product core, not a side dashboard.
+              Live pricing across the sets and cards you're tracking, updated as the market moves.
             </h2>
             <p className="text-sm text-text-muted mt-3 max-w-2xl leading-relaxed">
               Lion Market is strongest when pricing, demand, and collector movement all feel connected to actual
@@ -253,8 +253,7 @@ export function PriceTab({ search, onScan }: { search: string; onScan: () => voi
                 <span className="text-xs uppercase tracking-[0.16em] font-semibold">Oracle assist</span>
               </div>
               <p className="text-sm text-text-muted leading-relaxed">
-                AI belongs here as a layer on top of real pricing data. Use it to summarize movement and highlight
-                likely catalysts, not to replace the market page itself.
+                {strongest ? `${strongest.name} is leading today's movers, up ${strongest.change.toFixed(1)}%.` : 'No standout movers match your current filters.'}
               </p>
             </div>
           </Card>
