@@ -1,0 +1,1216 @@
+diff -ruN '--exclude=node_modules' '--exclude=dist' '--exclude=.git' orig/orig_src/package-lock.json project-lion-testing/package-lock.json
+--- orig/orig_src/package-lock.json	2026-07-27 04:42:10.000000000 +0000
++++ project-lion-testing/package-lock.json	2026-07-27 05:02:55.840804793 +0000
+@@ -10,6 +10,7 @@
+       "dependencies": {
+         "@supabase/supabase-js": "^2.57.4",
+         "lucide-react": "^0.344.0",
++        "maplibre-gl": "^6.0.0",
+         "react": "^18.3.1",
+         "react-dom": "^18.3.1"
+       },
+@@ -951,6 +952,92 @@
+         "@jridgewell/sourcemap-codec": "^1.4.14"
+       }
+     },
++    "node_modules/@mapbox/jsonlint-lines-primitives": {
++      "version": "2.0.3",
++      "resolved": "https://registry.npmjs.org/@mapbox/jsonlint-lines-primitives/-/jsonlint-lines-primitives-2.0.3.tgz",
++      "integrity": "sha512-0SElaV0uMxEnxzBhhX9WTuPyUeMsAN/SS0i16tjuba4/mio63MG9khjC1a0JAiPGXAwvwm4UfHJURCN7nyudQg==",
++      "license": "MIT",
++      "engines": {
++        "node": ">= 22"
++      }
++    },
++    "node_modules/@mapbox/point-geometry": {
++      "version": "1.1.0",
++      "resolved": "https://registry.npmjs.org/@mapbox/point-geometry/-/point-geometry-1.1.0.tgz",
++      "integrity": "sha512-YGcBz1cg4ATXDCM/71L9xveh4dynfGmcLDqufR+nQQy3fKwsAZsWd/x4621/6uJaeB9mwOHE6hPeDgXz9uViUQ==",
++      "license": "ISC"
++    },
++    "node_modules/@mapbox/tiny-sdf": {
++      "version": "2.2.0",
++      "resolved": "https://registry.npmjs.org/@mapbox/tiny-sdf/-/tiny-sdf-2.2.0.tgz",
++      "integrity": "sha512-LVL4wgI9YAum5V+LNVQO6QgFBPw7/MIIY4XJPNsPDMrjEwcE+JfKk1LuIl8GnF197ejVdC9QdPaxrx5gfgdGXg==",
++      "license": "BSD-2-Clause"
++    },
++    "node_modules/@mapbox/unitbezier": {
++      "version": "1.0.0",
++      "resolved": "https://registry.npmjs.org/@mapbox/unitbezier/-/unitbezier-1.0.0.tgz",
++      "integrity": "sha512-fqd515fjBmANKGGsQ286E2Wvj/XvDFpGzwJxq4CI6jMQue6Oy04uCKp+JWKF00xRTmk6cEu1jPJ9p3xqH8YWqQ==",
++      "license": "BSD-2-Clause"
++    },
++    "node_modules/@mapbox/vector-tile": {
++      "version": "3.0.0",
++      "resolved": "https://registry.npmjs.org/@mapbox/vector-tile/-/vector-tile-3.0.0.tgz",
++      "integrity": "sha512-Qf10S1uIHMk20ri/IVBnpS+esUEkVaR5Hftmz88jTInrpmWgPGJfPe3LVjjlE77trLx8tH6qjTG7uWH9hIq/0Q==",
++      "license": "BSD-3-Clause",
++      "dependencies": {
++        "@mapbox/point-geometry": "~1.1.0",
++        "@types/geojson": "^7946.0.16",
++        "pbf": "^5.0.0"
++      }
++    },
++    "node_modules/@maplibre/geojson-vt": {
++      "version": "6.1.1",
++      "resolved": "https://registry.npmjs.org/@maplibre/geojson-vt/-/geojson-vt-6.1.1.tgz",
++      "integrity": "sha512-FVMOcmSP/yqol45t7StApEyTL5/vmqBCuFhH9n+fFuINenhaX+YgHHIt1yJ86S8kln3uJLcMvmEU2cfn6E2eCQ==",
++      "license": "ISC",
++      "dependencies": {
++        "kdbush": "^4.1.0"
++      }
++    },
++    "node_modules/@maplibre/maplibre-gl-style-spec": {
++      "version": "26.2.1",
++      "resolved": "https://registry.npmjs.org/@maplibre/maplibre-gl-style-spec/-/maplibre-gl-style-spec-26.2.1.tgz",
++      "integrity": "sha512-QFKCXkOeSzOr8jF75jm6kySOg+dUvOehPhRi68gcOYPHb7U5JloUq0dJW0Y5/fZV8ygfT0Vp2RWodvq+fyxFWA==",
++      "license": "ISC",
++      "dependencies": {
++        "@mapbox/jsonlint-lines-primitives": "^2.0.3",
++        "@mapbox/unitbezier": "^1.0.0",
++        "json-stringify-pretty-compact": "^4.0.0",
++        "minimist": "^1.2.8",
++        "quickselect": "^3.0.0",
++        "tinyqueue": "^3.0.0"
++      },
++      "bin": {
++        "gl-style-format": "dist/gl-style-format.mjs",
++        "gl-style-migrate": "dist/gl-style-migrate.mjs",
++        "gl-style-validate": "dist/gl-style-validate.mjs"
++      }
++    },
++    "node_modules/@maplibre/mlt": {
++      "version": "1.1.12",
++      "resolved": "https://registry.npmjs.org/@maplibre/mlt/-/mlt-1.1.12.tgz",
++      "integrity": "sha512-ZeK5w2TTeHOajcLaEQs1KZXw2V9wIKo1PmThlxlsHoXsQsYlBqLJzPOd6tJHRtGTChUY3DPPmjXRArYVvAbmZw==",
++      "license": "(MIT OR Apache-2.0)",
++      "dependencies": {
++        "@mapbox/point-geometry": "^1.1.0"
++      }
++    },
++    "node_modules/@maplibre/vt-pbf": {
++      "version": "4.3.2",
++      "resolved": "https://registry.npmjs.org/@maplibre/vt-pbf/-/vt-pbf-4.3.2.tgz",
++      "integrity": "sha512-j6p0AdjvAR19Z3XaCysle7A4ZSo08tYOzxD0Y9NQylwPAkwJJeYub5b2eVucdeDh7erhv69DahoLOevDRERRUw==",
++      "license": "MIT",
++      "dependencies": {
++        "@mapbox/point-geometry": "^1.1.0",
++        "@types/geojson": "^7946.0.16",
++        "pbf": "^5.1.0"
++      }
++    },
+     "node_modules/@nodelib/fs.scandir": {
+       "version": "2.1.5",
+       "resolved": "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz",
+@@ -1318,6 +1405,12 @@
+       "integrity": "sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==",
+       "dev": true
+     },
++    "node_modules/@types/geojson": {
++      "version": "7946.0.16",
++      "resolved": "https://registry.npmjs.org/@types/geojson/-/geojson-7946.0.16.tgz",
++      "integrity": "sha512-6C8nqWur3j98U6+lXDfTUWIfgvZU+EumvpHKcYjujKH7woYyLj2sUmff0tRhrqM7BohUw7Pz3ZB1jj2gW9Fvmg==",
++      "license": "MIT"
++    },
+     "node_modules/@types/json-schema": {
+       "version": "7.0.15",
+       "resolved": "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.15.tgz",
+@@ -2011,6 +2104,12 @@
+       "integrity": "sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==",
+       "dev": true
+     },
++    "node_modules/earcut": {
++      "version": "3.2.3",
++      "resolved": "https://registry.npmjs.org/earcut/-/earcut-3.2.3.tgz",
++      "integrity": "sha512-vnS4AVwp1KHAF13i1vp1/2D5evWy3k5u/iW/B81QVsUZtV8cv2tU0b2VNFlqvh4kYwrFMDdjPCfAmfyJW9y14Q==",
++      "license": "ISC"
++    },
+     "node_modules/eastasianwidth": {
+       "version": "0.2.0",
+       "resolved": "https://registry.npmjs.org/eastasianwidth/-/eastasianwidth-0.2.0.tgz",
+@@ -2510,6 +2609,12 @@
+         "node": ">=6.9.0"
+       }
+     },
++    "node_modules/gl-matrix": {
++      "version": "3.4.4",
++      "resolved": "https://registry.npmjs.org/gl-matrix/-/gl-matrix-3.4.4.tgz",
++      "integrity": "sha512-latSnyDNt/8zYUB6VIJ6PCh2jBjJX6gnDsoCZ7LyW7GkqrD51EWwa9qCoGixj8YqBtETQK/xY7OmpTF8xz1DdQ==",
++      "license": "MIT"
++    },
+     "node_modules/glob": {
+       "version": "10.4.5",
+       "resolved": "https://registry.npmjs.org/glob/-/glob-10.4.5.tgz",
+@@ -2782,6 +2887,12 @@
+       "integrity": "sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==",
+       "dev": true
+     },
++    "node_modules/json-stringify-pretty-compact": {
++      "version": "4.0.0",
++      "resolved": "https://registry.npmjs.org/json-stringify-pretty-compact/-/json-stringify-pretty-compact-4.0.0.tgz",
++      "integrity": "sha512-3CNZ2DnrpByG9Nqj6Xo8vqbjT4F6N+tb4Gb28ESAZjYZ5yqvmc56J+/kuIwkaAMOyblTQhUW7PxMkUb8Q36N3Q==",
++      "license": "MIT"
++    },
+     "node_modules/json5": {
+       "version": "2.2.3",
+       "resolved": "https://registry.npmjs.org/json5/-/json5-2.2.3.tgz",
+@@ -2794,6 +2905,12 @@
+         "node": ">=6"
+       }
+     },
++    "node_modules/kdbush": {
++      "version": "4.1.0",
++      "resolved": "https://registry.npmjs.org/kdbush/-/kdbush-4.1.0.tgz",
++      "integrity": "sha512-e9vurzrXJQrFX6ckpHP3bvj5l+9CnYzkxDNnNQ1h2QTqdWsUAJgXiKdGNcOa1EY85dU8KbQ+z/FdQdB7P+9yfQ==",
++      "license": "ISC"
++    },
+     "node_modules/keyv": {
+       "version": "4.5.4",
+       "resolved": "https://registry.npmjs.org/keyv/-/keyv-4.5.4.tgz",
+@@ -2883,6 +3000,38 @@
+         "react": "^16.5.1 || ^17.0.0 || ^18.0.0"
+       }
+     },
++    "node_modules/maplibre-gl": {
++      "version": "6.0.0",
++      "resolved": "https://registry.npmjs.org/maplibre-gl/-/maplibre-gl-6.0.0.tgz",
++      "integrity": "sha512-1wBgEhzTZfA+cDpFdt0fM1mJA5mJ90fifORJ7D8JcKLJCvPT/iTx9bNxkP7DqEYde65DJd7gE7h83khwNRqdyg==",
++      "license": "BSD-3-Clause",
++      "dependencies": {
++        "@mapbox/point-geometry": "^1.1.0",
++        "@mapbox/tiny-sdf": "^2.2.0",
++        "@mapbox/unitbezier": "^1.0.0",
++        "@mapbox/vector-tile": "^3.0.0",
++        "@maplibre/geojson-vt": "^6.1.1",
++        "@maplibre/maplibre-gl-style-spec": "^26.1.0",
++        "@maplibre/mlt": "^1.1.12",
++        "@maplibre/vt-pbf": "^4.3.2",
++        "@types/geojson": "^7946.0.16",
++        "earcut": "^3.2.3",
++        "gl-matrix": "^3.4.4",
++        "kdbush": "^4.1.0",
++        "murmurhash-js": "^1.0.0",
++        "pbf": "^5.1.2",
++        "potpack": "^2.1.0",
++        "quickselect": "^3.0.0",
++        "tinyqueue": "^3.0.0"
++      },
++      "engines": {
++        "node": ">=16.14.0",
++        "npm": ">=8.1.0"
++      },
++      "funding": {
++        "url": "https://github.com/maplibre/maplibre-gl-js?sponsor=1"
++      }
++    },
+     "node_modules/merge2": {
+       "version": "1.4.1",
+       "resolved": "https://registry.npmjs.org/merge2/-/merge2-1.4.1.tgz",
+@@ -2917,6 +3066,15 @@
+         "node": "*"
+       }
+     },
++    "node_modules/minimist": {
++      "version": "1.2.8",
++      "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.8.tgz",
++      "integrity": "sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==",
++      "license": "MIT",
++      "funding": {
++        "url": "https://github.com/sponsors/ljharb"
++      }
++    },
+     "node_modules/minipass": {
+       "version": "7.1.2",
+       "resolved": "https://registry.npmjs.org/minipass/-/minipass-7.1.2.tgz",
+@@ -2932,6 +3090,12 @@
+       "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==",
+       "dev": true
+     },
++    "node_modules/murmurhash-js": {
++      "version": "1.0.0",
++      "resolved": "https://registry.npmjs.org/murmurhash-js/-/murmurhash-js-1.0.0.tgz",
++      "integrity": "sha512-TvmkNhkv8yct0SVBSy+o8wYzXjE4Zz3PCesbfs8HiCXXdcTuocApFv11UWlNFWKYsP2okqrhb7JNlSm9InBhIw==",
++      "license": "MIT"
++    },
+     "node_modules/mz": {
+       "version": "2.7.0",
+       "resolved": "https://registry.npmjs.org/mz/-/mz-2.7.0.tgz",
+@@ -3120,6 +3284,18 @@
+       "integrity": "sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==",
+       "dev": true
+     },
++    "node_modules/pbf": {
++      "version": "5.1.2",
++      "resolved": "https://registry.npmjs.org/pbf/-/pbf-5.1.2.tgz",
++      "integrity": "sha512-mnvGdvOrIvJOBGUEdGkrVXjN8E/VkIJCkf2eS1DH2yv82ORUlLttmDt0rWY38yYZmVwciZwBUvHM20qxBZf40w==",
++      "license": "BSD-3-Clause",
++      "dependencies": {
++        "resolve-protobuf-schema": "^2.1.0"
++      },
++      "bin": {
++        "pbf": "bin/pbf"
++      }
++    },
+     "node_modules/picocolors": {
+       "version": "1.1.1",
+       "resolved": "https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz",
+@@ -3299,6 +3475,12 @@
+       "integrity": "sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==",
+       "dev": true
+     },
++    "node_modules/potpack": {
++      "version": "2.1.0",
++      "resolved": "https://registry.npmjs.org/potpack/-/potpack-2.1.0.tgz",
++      "integrity": "sha512-pcaShQc1Shq0y+E7GqJqvZj8DTthWV1KeHGdi0Z6IAin2Oi3JnLCOfwnCo84qc+HAp52wT9nK9H7FAJp5a44GQ==",
++      "license": "ISC"
++    },
+     "node_modules/prelude-ls": {
+       "version": "1.2.1",
+       "resolved": "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz",
+@@ -3308,6 +3490,12 @@
+         "node": ">= 0.8.0"
+       }
+     },
++    "node_modules/protocol-buffers-schema": {
++      "version": "3.6.1",
++      "resolved": "https://registry.npmjs.org/protocol-buffers-schema/-/protocol-buffers-schema-3.6.1.tgz",
++      "integrity": "sha512-VG2K63Igkiv9p76tk1lilczEK1cT+kCjKtkdhw1dQZV3k3IXJbd3o6Ho8b9zJZaHSnT2hKe4I+ObmX9w6m5SmQ==",
++      "license": "MIT"
++    },
+     "node_modules/punycode": {
+       "version": "2.3.1",
+       "resolved": "https://registry.npmjs.org/punycode/-/punycode-2.3.1.tgz",
+@@ -3337,6 +3525,12 @@
+         }
+       ]
+     },
++    "node_modules/quickselect": {
++      "version": "3.0.0",
++      "resolved": "https://registry.npmjs.org/quickselect/-/quickselect-3.0.0.tgz",
++      "integrity": "sha512-XdjUArbK4Bm5fLLvlm5KpTFOiOThgfWWI4axAZDWg4E/0mKdZyI9tNEfds27qCi1ze/vwTR16kvmmGhRra3c2g==",
++      "license": "ISC"
++    },
+     "node_modules/react": {
+       "version": "18.3.1",
+       "resolved": "https://registry.npmjs.org/react/-/react-18.3.1.tgz",
+@@ -3416,6 +3610,15 @@
+         "node": ">=4"
+       }
+     },
++    "node_modules/resolve-protobuf-schema": {
++      "version": "2.1.0",
++      "resolved": "https://registry.npmjs.org/resolve-protobuf-schema/-/resolve-protobuf-schema-2.1.0.tgz",
++      "integrity": "sha512-kI5ffTiZWmJaS/huM8wZfEMer1eRd7oJQhDuxeCLe3t7N7mX3z94CN0xPxBQxFYQTSNz9T0i+v6inKqSdK8xrQ==",
++      "license": "MIT",
++      "dependencies": {
++        "protocol-buffers-schema": "^3.3.1"
++      }
++    },
+     "node_modules/reusify": {
+       "version": "1.0.4",
+       "resolved": "https://registry.npmjs.org/reusify/-/reusify-1.0.4.tgz",
+@@ -3761,6 +3964,12 @@
+         "node": ">=0.8"
+       }
+     },
++    "node_modules/tinyqueue": {
++      "version": "3.0.0",
++      "resolved": "https://registry.npmjs.org/tinyqueue/-/tinyqueue-3.0.0.tgz",
++      "integrity": "sha512-gRa9gwYU3ECmQYv3lslts5hxuIa90veaEcxDYuu3QGOIAEM2mOZkVHp48ANJuu1CURtRdHKUBY5Lm1tHV+sD4g==",
++      "license": "ISC"
++    },
+     "node_modules/to-fast-properties": {
+       "version": "2.0.0",
+       "resolved": "https://registry.npmjs.org/to-fast-properties/-/to-fast-properties-2.0.0.tgz",
+diff -ruN '--exclude=node_modules' '--exclude=dist' '--exclude=.git' orig/orig_src/package.json project-lion-testing/package.json
+--- orig/orig_src/package.json	2026-07-27 04:42:10.000000000 +0000
++++ project-lion-testing/package.json	2026-07-27 05:02:55.740804787 +0000
+@@ -13,6 +13,7 @@
+   "dependencies": {
+     "@supabase/supabase-js": "^2.57.4",
+     "lucide-react": "^0.344.0",
++    "maplibre-gl": "^6.0.0",
+     "react": "^18.3.1",
+     "react-dom": "^18.3.1"
+   },
+diff -ruN '--exclude=node_modules' '--exclude=dist' '--exclude=.git' orig/orig_src/src/components/Layout.tsx project-lion-testing/src/components/Layout.tsx
+--- orig/orig_src/src/components/Layout.tsx	2026-07-27 04:42:10.000000000 +0000
++++ project-lion-testing/src/components/Layout.tsx	2026-07-27 05:04:40.831935040 +0000
+@@ -1,4 +1,4 @@
+-import { ReactNode, useMemo, useState } from 'react';
++import { ReactNode, useState } from 'react';
+ import {
+   Search,
+   ShoppingBag,
+@@ -27,39 +27,6 @@
+   { id: 'crowd', label: 'Crowd', short: 'Crowd', icon: Users, blurb: 'Collector feed and discussion' },
+ ];
+ 
+-const TAB_META: Record<Tab, { eyebrow: string; title: string; sub: string }> = {
+-  buy: {
+-    eyebrow: 'Local marketplace',
+-    title: 'Map-first card discovery',
+-    sub: 'Browse listings by zip, compare nearby sellers, and explore the peer-to-peer market visually.',
+-  },
+-  sell: {
+-    eyebrow: 'Seller workspace',
+-    title: 'Run your storefront',
+-    sub: 'Manage inventory, tune pricing, and convert buyer attention into local sales.',
+-  },
+-  msg: {
+-    eyebrow: 'Conversations',
+-    title: 'Keep deals moving',
+-    sub: 'Handle negotiations, pickups, and follow-ups in a desktop messaging workspace.',
+-  },
+-  price: {
+-    eyebrow: 'Market intelligence',
+-    title: 'Track movement across the market',
+-    sub: 'Follow gainers, drops, volume, and collection exposure from one central board.',
+-  },
+-  oracle: {
+-    eyebrow: 'AI assist',
+-    title: 'Forecast with context',
+-    sub: 'Use Oracle as a support layer on top of listings and market data, not as the main story.',
+-  },
+-  crowd: {
+-    eyebrow: 'Community',
+-    title: 'Follow the collector conversation',
+-    sub: 'Read local threads, shared forecasts, and card-specific discussion in one feed.',
+-  },
+-};
+-
+ export function Layout({
+   tab,
+   setTab,
+@@ -77,12 +44,11 @@
+ }) {
+   const [scanOpen, setScanOpen] = useState(false);
+   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+-  const current = useMemo(() => TAB_META[tab], [tab]);
+ 
+   return (
+     <div className="min-h-screen bg-bg text-text">
+       <div className="min-h-screen grid lg:grid-cols-[292px_minmax(0,1fr)]">
+-        <aside className="hidden lg:flex lg:flex-col border-r border-border bg-[#171612]">
++        <aside className="hidden lg:flex lg:flex-col lg:sticky lg:top-0 lg:h-screen lg:self-start border-r border-border bg-[#171612]">
+           <div className="h-20 px-6 border-b border-border flex items-center justify-between">
+             <button onClick={() => setTab('buy')} className="tap flex items-center gap-3 text-left">
+               <div className="w-11 h-11 rounded-2xl border border-accent/20 bg-accent/10 flex items-center justify-center">
+@@ -118,12 +84,12 @@
+                 <MapPin size={13} className="text-accent" />
+                 Active area
+               </div>
+-              <div className="text-sm font-medium mt-2">Phoenix, AZ</div>
+-              <div className="text-xs text-text-muted mt-1">Buy should eventually drill down to exact zip polygons.</div>
++              <div className="text-sm font-medium mt-2">Miami, FL</div>
++              <div className="text-xs text-text-muted mt-1">Showing listings within 15 miles. Change area anytime.</div>
+             </div>
+           </div>
+ 
+-          <nav className="px-3 py-4 flex-1 overflow-auto">
++          <nav className="px-3 py-4 flex-1">
+             <div className="text-[11px] uppercase tracking-[0.18em] text-text-faint font-semibold px-3 pb-2">
+               Navigation
+             </div>
+@@ -170,18 +136,17 @@
+ 
+           <div className="px-4 py-4 border-t border-border">
+             <div className="rounded-[22px] border border-border bg-surface p-4">
+-              <div className="text-sm font-semibold">Website mode</div>
++              <div className="text-sm font-semibold">Quick scan</div>
+               <p className="text-xs text-text-muted mt-2 leading-relaxed">
+-                The screenshots show a strong mobile product language. Desktop should keep the same brand feel but open
+-                it into a real workspace, especially for Buy, Price, and Crowd.
++                Scan a card to check local listings, live pricing, and Oracle forecasts in one pass.
+               </p>
+ 
+               <button
+-                onClick={() => setTab('buy')}
++                onClick={() => setScanOpen(true)}
+                 className="tap mt-4 w-full rounded-[18px] bg-accent px-4 py-2.5 text-sm font-semibold text-accent-ink flex items-center justify-center gap-2"
+               >
+-                <MapPin size={15} />
+-                Open local market
++                <ScanLine size={15} />
++                Scan a card
+               </button>
+             </div>
+           </div>
+@@ -202,37 +167,10 @@
+                 <span className="font-bold text-[15px] tracking-tight">Lion Market</span>
+               </button>
+ 
+-              <div className="hidden lg:flex min-w-0 flex-1 items-center gap-6">
+-                <div className="min-w-0">
+-                  <div className="text-[11px] uppercase tracking-[0.16em] text-text-faint font-semibold">
+-                    {current.eyebrow}
+-                  </div>
+-                  <div className="text-lg font-semibold tracking-tight truncate">{current.title}</div>
+-                </div>
+-
+-                <div className="flex-1 max-w-2xl">
+-                  <div className="flex items-center gap-2.5 rounded-[20px] border border-border bg-surface px-3.5 py-2.5">
+-                    <Search size={16} className="text-text-faint shrink-0" />
+-                    <input
+-                      value={search}
+-                      onChange={(e) => setSearch(e.target.value)}
+-                      placeholder="Search cards, sets, sellers, zip codes"
+-                      className="bg-transparent outline-none text-sm text-text placeholder:text-text-faint flex-1 min-w-0"
+-                    />
+-                    <button
+-                      onClick={() => setScanOpen(true)}
+-                      className="tap rounded-full border border-accent/20 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-accent shrink-0"
+-                    >
+-                      Scan
+-                    </button>
+-                  </div>
+-                </div>
+-              </div>
+-
+               <div className="ml-auto flex items-center gap-2 shrink-0">
+                 <div className="hidden md:flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-2 text-xs text-text-muted">
+                   <MapPin size={13} className="text-accent" />
+-                  Phoenix, AZ
++                  Miami, FL
+                 </div>
+ 
+                 <button className="tap hidden sm:flex w-10 h-10 rounded-full border border-border bg-surface items-center justify-center text-text-muted hover:text-text">
+@@ -305,31 +243,6 @@
+           </header>
+ 
+           <main className="flex-1 min-w-0">
+-            <section className="hidden lg:block px-8 pt-6">
+-              <div className="rounded-[28px] border border-border bg-surface px-6 py-5">
+-                <div className="flex items-start justify-between gap-6">
+-                  <div className="min-w-0">
+-                    <div className="text-[11px] uppercase tracking-[0.18em] text-text-faint font-semibold">
+-                      {current.eyebrow}
+-                    </div>
+-                    <h1 className="text-3xl font-semibold tracking-tight mt-1">{current.title}</h1>
+-                    <p className="text-sm text-text-muted mt-2 max-w-3xl leading-relaxed">{current.sub}</p>
+-                  </div>
+-
+-                  {tab === 'buy' ? (
+-                    <div className="hidden xl:flex items-center gap-2 rounded-full border border-border bg-bg px-3 py-2 text-xs text-text-muted shrink-0">
+-                      <MapPin size={13} className="text-accent" />
+-                      Zip boundary map belongs here
+-                    </div>
+-                  ) : (
+-                    <div className="hidden xl:flex items-center gap-2 rounded-full border border-border bg-bg px-3 py-2 text-xs text-text-muted shrink-0">
+-                      Desktop workspace
+-                    </div>
+-                  )}
+-                </div>
+-              </div>
+-            </section>
+-
+             <section className="px-4 lg:px-8 py-4 lg:py-6 pb-24 lg:pb-8">
+               <div className="mx-auto w-full max-w-[1600px]">{children}</div>
+             </section>
+diff -ruN '--exclude=node_modules' '--exclude=dist' '--exclude=.git' orig/orig_src/src/components/ZipMap.tsx project-lion-testing/src/components/ZipMap.tsx
+--- orig/orig_src/src/components/ZipMap.tsx	1970-01-01 00:00:00.000000000 +0000
++++ project-lion-testing/src/components/ZipMap.tsx	2026-07-27 05:04:57.727520410 +0000
+@@ -0,0 +1,175 @@
++import { useEffect, useRef } from 'react';
++import * as maplibregl from 'maplibre-gl';
++import type { Map as MLMap, MapMouseEvent } from 'maplibre-gl';
++import 'maplibre-gl/dist/maplibre-gl.css';
++import miamiZips from '@/data/miami_zips.geojson?url';
++
++// Free, open-source, no API key required:
++// - MapLibre GL JS renders the map (Mapbox GL fork, open source)
++// - OpenFreeMap serves the vector basemap tiles for free with no key/usage limits
++// - Zip boundaries are real US Census ZCTA polygons (src/data/miami_zips.geojson)
++
++export function ZipMap({
++  selectedZip,
++  hoverZip,
++  onHoverZip,
++  onSelectZip,
++  hasListings,
++}: {
++  selectedZip: string;
++  hoverZip: string | null;
++  onHoverZip: (zip: string | null) => void;
++  onSelectZip: (zip: string) => void;
++  hasListings: (zip: string) => boolean;
++}) {
++  const containerRef = useRef<HTMLDivElement>(null);
++  const mapRef = useRef<MLMap | null>(null);
++  const selectedZipRef = useRef(selectedZip);
++  const hoverZipRef = useRef(hoverZip);
++  const hasListingsRef = useRef(hasListings);
++  selectedZipRef.current = selectedZip;
++  hoverZipRef.current = hoverZip;
++  hasListingsRef.current = hasListings;
++
++  useEffect(() => {
++    if (!containerRef.current || mapRef.current) return;
++
++    const map = new maplibregl.Map({
++      container: containerRef.current,
++      style: 'https://tiles.openfreemap.org/styles/dark',
++      center: [-80.205, 25.79],
++      zoom: 11.4,
++      attributionControl: { compact: true },
++    });
++
++    mapRef.current = map;
++
++    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
++
++    map.on('load', () => {
++      map.addSource('zips', {
++        type: 'geojson',
++        data: miamiZips,
++        promoteId: 'zip',
++      });
++
++      map.addLayer({
++        id: 'zip-fill',
++        type: 'fill',
++        source: 'zips',
++        paint: {
++          'fill-color': [
++            'case',
++            ['==', ['get', 'zip'], selectedZipRef.current],
++            'rgba(247, 190, 83, 0.38)',
++            ['boolean', ['feature-state', 'hover'], false],
++            'rgba(247, 190, 83, 0.24)',
++            'rgba(247, 190, 83, 0.08)',
++          ],
++        },
++      });
++
++      map.addLayer({
++        id: 'zip-line',
++        type: 'line',
++        source: 'zips',
++        paint: {
++          'line-color': [
++            'case',
++            ['==', ['get', 'zip'], selectedZipRef.current],
++            '#f7be53',
++            'rgba(255,255,255,0.35)',
++          ],
++          'line-width': ['case', ['==', ['get', 'zip'], selectedZipRef.current], 2.5, 1],
++        },
++      });
++
++      map.addLayer({
++        id: 'zip-label',
++        type: 'symbol',
++        source: 'zips',
++        layout: {
++          'text-field': ['get', 'zip'],
++          'text-size': 12,
++          'text-font': ['Noto Sans Regular'],
++        },
++        paint: {
++          'text-color': '#f1e6cf',
++          'text-halo-color': '#12110e',
++          'text-halo-width': 1.2,
++        },
++      });
++
++      let hoveredFeatureId: string | number | undefined;
++
++      map.on('mousemove', 'zip-fill', (e: MapMouseEvent) => {
++        if (!e.features || e.features.length === 0) return;
++        const feature = e.features[0];
++        const zip = feature.properties?.zip as string;
++
++        if (hoveredFeatureId !== undefined) {
++          map.setFeatureState({ source: 'zips', id: hoveredFeatureId }, { hover: false });
++        }
++        hoveredFeatureId = feature.id;
++        if (hoveredFeatureId !== undefined) {
++          map.setFeatureState({ source: 'zips', id: hoveredFeatureId }, { hover: true });
++        }
++        map.getCanvas().style.cursor = 'pointer';
++        onHoverZip(zip);
++      });
++
++      map.on('mouseleave', 'zip-fill', () => {
++        if (hoveredFeatureId !== undefined) {
++          map.setFeatureState({ source: 'zips', id: hoveredFeatureId }, { hover: false });
++        }
++        hoveredFeatureId = undefined;
++        map.getCanvas().style.cursor = '';
++        onHoverZip(null);
++      });
++
++      map.on('click', 'zip-fill', (e: MapMouseEvent) => {
++        if (!e.features || e.features.length === 0) return;
++        const zip = e.features[0].properties?.zip as string;
++        onSelectZip(zip);
++      });
++    });
++
++    return () => {
++      map.remove();
++      mapRef.current = null;
++    };
++    // eslint-disable-next-line react-hooks/exhaustive-deps
++  }, []);
++
++  // Keep selected/hover styling in sync with React state changes triggered outside the map
++  // (e.g. clicking a result card in the list).
++  useEffect(() => {
++    const map = mapRef.current;
++    if (!map || !map.isStyleLoaded() || !map.getLayer('zip-fill')) return;
++
++    map.setPaintProperty('zip-fill', 'fill-color', [
++      'case',
++      ['==', ['get', 'zip'], selectedZip],
++      'rgba(247, 190, 83, 0.38)',
++      ['boolean', ['feature-state', 'hover'], false],
++      'rgba(247, 190, 83, 0.24)',
++      'rgba(247, 190, 83, 0.08)',
++    ]);
++
++    map.setPaintProperty('zip-line', 'line-color', [
++      'case',
++      ['==', ['get', 'zip'], selectedZip],
++      '#f7be53',
++      'rgba(255,255,255,0.35)',
++    ]);
++
++    map.setPaintProperty('zip-line', 'line-width', [
++      'case',
++      ['==', ['get', 'zip'], selectedZip],
++      2.5,
++      1,
++    ]);
++  }, [selectedZip]);
++
++  return <div ref={containerRef} className="absolute inset-0" />;
++}
+diff -ruN '--exclude=node_modules' '--exclude=dist' '--exclude=.git' orig/orig_src/src/data/miami_zips.geojson project-lion-testing/src/data/miami_zips.geojson
+--- orig/orig_src/src/data/miami_zips.geojson	1970-01-01 00:00:00.000000000 +0000
++++ project-lion-testing/src/data/miami_zips.geojson	2026-07-27 05:02:46.695430745 +0000
+@@ -0,0 +1,12 @@
++{"type":"FeatureCollection", "features": [
++{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-80.254,25.7351],[-80.2539,25.7335],[-80.2617,25.7274],[-80.2614,25.7199],[-80.2608,25.7056],[-80.258,25.7048],[-80.2526,25.705],[-80.2505,25.7049],[-80.2485,25.7041],[-80.2454,25.702],[-80.2461,25.7075],[-80.2478,25.7095],[-80.2376,25.7096],[-80.238,25.7188],[-80.2115,25.7345],[-80.2159,25.7388],[-80.2143,25.7385],[-80.2125,25.7397],[-80.2135,25.741],[-80.2143,25.7407],[-80.2168,25.743],[-80.2111,25.7469],[-80.2113,25.7477],[-80.2128,25.7491],[-80.2215,25.7459],[-80.2237,25.7453],[-80.2244,25.746],[-80.2258,25.7457],[-80.2299,25.7455],[-80.234,25.7456],[-80.234,25.746],[-80.2376,25.7459],[-80.2408,25.7454],[-80.2457,25.7455],[-80.2462,25.7452],[-80.2531,25.745],[-80.2544,25.7448],[-80.256,25.7439],[-80.2543,25.7426],[-80.254,25.7351]]]},"properties":{"zip":"33133"}},
++{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-80.1403,25.796],[-80.1414,25.7956],[-80.1421,25.7966],[-80.1451,25.7965],[-80.147,25.7979],[-80.1643,25.7972],[-80.187,25.7971],[-80.1871,25.7959],[-80.1856,25.7955],[-80.1854,25.7938],[-80.1854,25.7897],[-80.1799,25.7899],[-80.1791,25.7889],[-80.1662,25.7889],[-80.1685,25.7819],[-80.169,25.7796],[-80.1637,25.7774],[-80.1531,25.7728],[-80.1519,25.7723],[-80.146,25.7696],[-80.1414,25.7671],[-80.1356,25.7649],[-80.1249,25.76],[-80.1237,25.7624],[-80.126,25.7705],[-80.1243,25.7802],[-80.1239,25.7867],[-80.1216,25.7961],[-80.1193,25.8036],[-80.1232,25.8041],[-80.1239,25.8044],[-80.1258,25.7994],[-80.128,25.8001],[-80.1302,25.7994],[-80.135,25.7968],[-80.1336,25.7998],[-80.1348,25.8001],[-80.1367,25.7959],[-80.1388,25.7948],[-80.1403,25.796]]]},"properties":{"zip":"33139"}},
++{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-80.2147,25.7745],[-80.2146,25.7696],[-80.2162,25.7695],[-80.2162,25.7686],[-80.2145,25.7686],[-80.2143,25.7629],[-80.2006,25.7633],[-80.2006,25.7625],[-80.1989,25.7615],[-80.1956,25.7615],[-80.1963,25.76],[-80.1929,25.758],[-80.1922,25.7603],[-80.1935,25.7605],[-80.1919,25.7674],[-80.1922,25.7683],[-80.1934,25.7683],[-80.1934,25.7713],[-80.1918,25.7715],[-80.1919,25.7726],[-80.1935,25.7725],[-80.1937,25.7751],[-80.1978,25.775],[-80.1994,25.7743],[-80.2044,25.7738],[-80.2094,25.7737],[-80.2094,25.7747],[-80.2115,25.7746],[-80.2114,25.7737],[-80.213,25.7736],[-80.213,25.7746],[-80.2147,25.7745]]]},"properties":{"zip":"33130"}},
++{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-80.2555,25.7718],[-80.2546,25.7726],[-80.2508,25.7726],[-80.2508,25.772],[-80.2473,25.7721],[-80.2473,25.7729],[-80.2437,25.773],[-80.2437,25.7726],[-80.2401,25.7723],[-80.2243,25.7728],[-80.2222,25.7733],[-80.2163,25.7735],[-80.2164,25.7744],[-80.2147,25.7745],[-80.2149,25.7816],[-80.2146,25.7847],[-80.2161,25.7849],[-80.2162,25.7876],[-80.2167,25.7893],[-80.2164,25.7904],[-80.215,25.7905],[-80.2151,25.7932],[-80.2192,25.793],[-80.2192,25.7939],[-80.2223,25.7948],[-80.2455,25.7941],[-80.246,25.7937],[-80.2478,25.7941],[-80.2561,25.7939],[-80.2562,25.7944],[-80.2625,25.7939],[-80.2642,25.7936],[-80.2641,25.7852],[-80.2615,25.7858],[-80.2559,25.786],[-80.2555,25.7732],[-80.2583,25.7732],[-80.2582,25.7725],[-80.2555,25.7725],[-80.2555,25.7718]]]},"properties":{"zip":"33125"}},
++{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-80.2166,25.8312],[-80.2162,25.8239],[-80.2151,25.7932],[-80.2124,25.7932],[-80.2109,25.7936],[-80.2111,25.7951],[-80.1985,25.7954],[-80.1945,25.7956],[-80.193,25.8017],[-80.195,25.8016],[-80.1952,25.8058],[-80.194,25.8068],[-80.1931,25.8105],[-80.1953,25.8105],[-80.1959,25.824],[-80.1965,25.832],[-80.1993,25.8316],[-80.1993,25.8325],[-80.2044,25.8324],[-80.2043,25.8306],[-80.2054,25.8305],[-80.2053,25.8287],[-80.2063,25.8285],[-80.2058,25.8323],[-80.2146,25.8321],[-80.2146,25.8313],[-80.2166,25.8312]]]},"properties":{"zip":"33127"}},
++{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-80.1965,25.832],[-80.1963,25.8328],[-80.1966,25.84],[-80.1956,25.8401],[-80.1957,25.843],[-80.1966,25.843],[-80.197,25.8486],[-80.1973,25.8604],[-80.1979,25.8733],[-80.2029,25.8731],[-80.2035,25.8727],[-80.2075,25.873],[-80.2074,25.8693],[-80.2085,25.8692],[-80.2086,25.8721],[-80.21,25.8719],[-80.2121,25.8723],[-80.2161,25.8722],[-80.2182,25.8726],[-80.2179,25.8645],[-80.2158,25.8619],[-80.2157,25.86],[-80.2173,25.8575],[-80.2176,25.8555],[-80.2196,25.8556],[-80.2211,25.8568],[-80.2237,25.8613],[-80.2245,25.8613],[-80.2218,25.8567],[-80.2216,25.8548],[-80.2176,25.8548],[-80.2174,25.8505],[-80.2153,25.8505],[-80.2152,25.8487],[-80.2173,25.8487],[-80.217,25.8394],[-80.2172,25.8394],[-80.2168,25.832],[-80.2166,25.8312],[-80.2146,25.8313],[-80.2146,25.8321],[-80.2058,25.8323],[-80.2063,25.8285],[-80.2053,25.8287],[-80.2054,25.8305],[-80.2043,25.8306],[-80.2044,25.8324],[-80.1993,25.8325],[-80.1993,25.8316],[-80.1965,25.832]]]},"properties":{"zip":"33150"}},
++{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-80.1609,25.8428],[-80.1602,25.8283],[-80.1601,25.8269],[-80.1356,25.8278],[-80.1337,25.8274],[-80.131,25.8301],[-80.1303,25.8319],[-80.1311,25.8348],[-80.1332,25.838],[-80.1327,25.8407],[-80.1329,25.8417],[-80.1297,25.8438],[-80.1291,25.8433],[-80.1243,25.844],[-80.1241,25.8431],[-80.1223,25.8393],[-80.122,25.8444],[-80.1207,25.8436],[-80.1189,25.8436],[-80.1188,25.8486],[-80.1113,25.8486],[-80.1114,25.8502],[-80.115,25.8505],[-80.115,25.8559],[-80.1152,25.8726],[-80.1239,25.8725],[-80.1381,25.8719],[-80.1458,25.8717],[-80.1567,25.8706],[-80.1635,25.8557],[-80.1614,25.8558],[-80.1609,25.8428]]]},"properties":{"zip":"33141"}},
++{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-80.3195,25.8816],[-80.3231,25.8816],[-80.3234,25.8799],[-80.323,25.8698],[-80.3226,25.8537],[-80.3137,25.8471],[-80.3137,25.8474],[-80.3063,25.8475],[-80.3063,25.8471],[-80.3023,25.8471],[-80.3003,25.8475],[-80.3003,25.8462],[-80.2982,25.8462],[-80.2983,25.8471],[-80.2905,25.8471],[-80.2902,25.848],[-80.2883,25.8481],[-80.2882,25.8472],[-80.2863,25.8473],[-80.2863,25.8482],[-80.2823,25.8483],[-80.2825,25.8512],[-80.2786,25.8513],[-80.2786,25.8522],[-80.2825,25.8521],[-80.2821,25.853],[-80.2826,25.8548],[-80.283,25.8642],[-80.2809,25.8642],[-80.2809,25.8651],[-80.283,25.8651],[-80.2836,25.8814],[-80.2873,25.8813],[-80.2874,25.8837],[-80.289,25.8844],[-80.2975,25.8843],[-80.3019,25.8842],[-80.312,25.8842],[-80.3156,25.8844],[-80.3154,25.8825],[-80.3195,25.8825],[-80.3195,25.8816]]]},"properties":{"zip":"33012"}},
++{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-80.2544,25.7448],[-80.2552,25.7661],[-80.2555,25.7718],[-80.2555,25.7725],[-80.2582,25.7725],[-80.2613,25.7725],[-80.2612,25.7717],[-80.2657,25.7716],[-80.2658,25.7752],[-80.2683,25.7751],[-80.2683,25.7733],[-80.2673,25.7734],[-80.2672,25.7716],[-80.282,25.771],[-80.2821,25.7746],[-80.2857,25.7745],[-80.2855,25.7709],[-80.2881,25.7712],[-80.2875,25.7538],[-80.2858,25.7539],[-80.2859,25.7492],[-80.2873,25.7484],[-80.2865,25.734],[-80.2844,25.734],[-80.2702,25.7344],[-80.2621,25.7348],[-80.2619,25.7355],[-80.2587,25.7357],[-80.2586,25.7349],[-80.254,25.7351],[-80.2543,25.7426],[-80.256,25.7439],[-80.2544,25.7448]]]},"properties":{"zip":"33134"}},
++{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-80.1979,25.7789],[-80.1979,25.7798],[-80.1996,25.7797],[-80.1995,25.7788],[-80.1979,25.7789]]]},"properties":{"zip":"33101"}}
++]}
+\ No newline at end of file
+diff -ruN '--exclude=node_modules' '--exclude=dist' '--exclude=.git' orig/orig_src/src/data.ts project-lion-testing/src/data.ts
+--- orig/orig_src/src/data.ts	2026-07-27 04:42:10.000000000 +0000
++++ project-lion-testing/src/data.ts	2026-07-27 05:04:36.091530985 +0000
+@@ -108,12 +108,12 @@
+   `https://images.pexels.com/photos/${n}/pexels-photo-${n}.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop`;
+ 
+ export const listings: Listing[] = [
+-  { id: 'l1', name: 'Charizard ex - Special Illustration Rare', set: 'Paldean Fates', number: '239/091', condition: 'NM', grade: 'PSA 10', price: 320, seller: 'MesaCards', rating: 4.9, sales: 312, distance: 2.4, area: 'Tempe, AZ', game: 'Pokemon', image: cardImg(326312), raw: false },
+-  { id: 'l2', name: 'Pikachu V - Rainbow Rare', set: 'Celebrations', number: '025/025', condition: 'LP', price: 78, seller: 'AZCardCo', rating: 4.7, sales: 88, distance: 5.1, area: 'Phoenix, AZ', game: 'Pokemon', image: cardImg(326311), raw: true },
+-  { id: 'l3', name: 'Mewtwo VSTAR - Gold Secret', set: 'Crown Zenith', number: 'GG70', condition: 'NM', grade: 'BGS 9.5', price: 145, seller: 'DesertTCG', rating: 5.0, sales: 421, distance: 8.8, area: 'Scottsdale, AZ', game: 'Pokemon', image: cardImg(326310), raw: false },
+-  { id: 'l4', name: 'Umbreon VMAX - Alt Art', set: 'Evolving Skies', number: '215/203', condition: 'NM', grade: 'PSA 10', price: 410, seller: 'NightShift', rating: 4.8, sales: 156, distance: 12.3, area: 'Mesa, AZ', game: 'Pokemon', image: cardImg(326309), raw: false },
+-  { id: 'l5', name: 'Lugia V - Alt Art', set: 'Silver Tempest', number: '215/195', condition: 'NM', price: 64, seller: 'ValleyCards', rating: 4.6, sales: 42, distance: 3.2, area: 'Tempe, AZ', game: 'Pokemon', image: cardImg(326308), raw: true },
+-  { id: 'l6', name: 'Giratina VSTAR - Alt Art', set: 'Lost Origin', number: '212/196', condition: 'MP', price: 92, seller: 'LostEcho', rating: 4.5, sales: 19, distance: 15.0, area: 'Glendale, AZ', game: 'Pokemon', image: cardImg(326307), raw: true },
++  { id: 'l1', name: 'Charizard ex - Special Illustration Rare', set: 'Paldean Fates', number: '239/091', condition: 'NM', grade: 'PSA 10', price: 320, seller: 'HialeahCards', rating: 4.9, sales: 312, distance: 2.4, area: 'South Beach, FL', game: 'Pokemon', image: cardImg(326312), raw: false },
++  { id: 'l2', name: 'Pikachu V - Rainbow Rare', set: 'Celebrations', number: '025/025', condition: 'LP', price: 78, seller: 'MiaCardCo', rating: 4.7, sales: 88, distance: 5.1, area: 'Miami, FL', game: 'Pokemon', image: cardImg(326311), raw: true },
++  { id: 'l3', name: 'Mewtwo VSTAR - Gold Secret', set: 'Crown Zenith', number: 'GG70', condition: 'NM', grade: 'BGS 9.5', price: 145, seller: 'GablesTCG', rating: 5.0, sales: 421, distance: 8.8, area: 'Coral Gables, FL', game: 'Pokemon', image: cardImg(326310), raw: false },
++  { id: 'l4', name: 'Umbreon VMAX - Alt Art', set: 'Evolving Skies', number: '215/203', condition: 'NM', grade: 'PSA 10', price: 410, seller: 'NightShift', rating: 4.8, sales: 156, distance: 12.3, area: 'Hialeah, FL', game: 'Pokemon', image: cardImg(326309), raw: false },
++  { id: 'l5', name: 'Lugia V - Alt Art', set: 'Silver South Beachst', number: '215/195', condition: 'NM', price: 64, seller: 'BiscayneCards', rating: 4.6, sales: 42, distance: 3.2, area: 'South Beach, FL', game: 'Pokemon', image: cardImg(326308), raw: true },
++  { id: 'l6', name: 'Giratina VSTAR - Alt Art', set: 'Lost Origin', number: '212/196', condition: 'MP', price: 92, seller: 'LostEcho', rating: 4.5, sales: 19, distance: 15.0, area: 'Little Haiti, FL', game: 'Pokemon', image: cardImg(326307), raw: true },
+ ];
+ 
+ export const myListings: MyListing[] = [
+@@ -121,36 +121,36 @@
+   { id: 'm2', name: 'Pikachu V - Rainbow', set: 'Celebrations', condition: 'Raw NM', price: 78, status: 'live', views: 612, saves: 22, offers: 3, image: cardImg(326311), aiHint: '3 similar listings nearby. Hold at $78.' },
+   { id: 'm3', name: 'Mewtwo VSTAR - Gold', set: 'Crown Zenith', condition: 'BGS 9.5', price: 145, status: 'hidden', views: 0, saves: 0, offers: 0, image: cardImg(326310) },
+   { id: 'm4', name: 'Umbreon VMAX - Alt Art', set: 'Evolving Skies', condition: 'PSA 10', price: 410, status: 'sold', views: 2104, saves: 188, offers: 14, image: cardImg(326309) },
+-  { id: 'm5', name: 'Lugia V - Alt Art', set: 'Silver Tempest', condition: 'Raw NM', price: 64, status: 'live', views: 388, saves: 9, offers: 1, image: cardImg(326308) },
++  { id: 'm5', name: 'Lugia V - Alt Art', set: 'Silver South Beachst', condition: 'Raw NM', price: 64, status: 'live', views: 388, saves: 9, offers: 1, image: cardImg(326308) },
+ ];
+ 
+ export const conversations: Conversation[] = [
+   {
+-    id: 'c1', name: 'MesaCards', role: 'selling', avatar: 'M', last: 'Meetup confirmed for Sat 2pm at Tempe Marketplace', time: '2m', status: 'meetup', autopilot: true,
++    id: 'c1', name: 'HialeahCards', role: 'selling', avatar: 'M', last: 'Meetup confirmed for Sat 2pm at Bayside Marketplace', time: '2m', status: 'meetup', autopilot: true,
+     messages: [
+       { from: 'them', text: 'Is the Charizard still available?', time: '10:02' },
+       { from: 'ai', text: 'Yes — listed at $320 PSA 10. Open to offers within 8%.', time: '10:02' },
+       { from: 'them', text: 'Would you do $295?', time: '10:04' },
+-      { from: 'ai', text: "I can accept $305 and meet at Tempe Marketplace this weekend.", time: '10:05' },
++      { from: 'ai', text: "I can accept $305 and meet at Bayside Marketplace this weekend.", time: '10:05' },
+       { from: 'them', text: 'Deal. Saturday 2pm works.', time: '10:06' },
+-      { from: 'ai', text: 'Meetup confirmed for Sat 2pm at Tempe Marketplace. I\'ll send a pin.', time: '10:06' },
++      { from: 'ai', text: 'Meetup confirmed for Sat 2pm at Bayside Marketplace. I\'ll send a pin.', time: '10:06' },
+     ],
+   },
+   {
+-    id: 'c2', name: 'AZCardCo', role: 'buying', avatar: 'A', last: 'AI is negotiating your offer of $70', time: '14m', status: 'negotiating', autopilot: true,
++    id: 'c2', name: 'MiaCardCo', role: 'buying', avatar: 'A', last: 'AI is negotiating your offer of $70', time: '14m', status: 'negotiating', autopilot: true,
+     messages: [
+       { from: 'me', text: 'I can do $70 for the Pikachu V rainbow.', time: '9:30' },
+-      { from: 'ai', text: 'Sent offer of $70 to AZCardCo. Awaiting response.', time: '9:30' },
++      { from: 'ai', text: 'Sent offer of $70 to MiaCardCo. Awaiting response.', time: '9:30' },
+       { from: 'them', text: '$75 and I\'ll throw in a sleeve.', time: '9:34' },
+-      { from: 'ai', text: 'Countering at $72 with meetup in Phoenix.', time: '9:34' },
++      { from: 'ai', text: 'Countering at $72 with meetup in Miami.', time: '9:34' },
+     ],
+   },
+   {
+-    id: 'c3', name: 'DesertTCG', role: 'selling', avatar: 'D', last: 'Awaiting seller response on meetup', time: '1h', status: 'awaiting', autopilot: false,
++    id: 'c3', name: 'GablesTCG', role: 'selling', avatar: 'D', last: 'Awaiting seller response on meetup', time: '1h', status: 'awaiting', autopilot: false,
+     messages: [
+       { from: 'them', text: 'Interested in the Mewtwo. Can you ship?', time: '8:10' },
+       { from: 'me', text: 'Local meetup only, sorry.', time: '8:12' },
+-      { from: 'them', text: 'How about Scottsdale Fashion Square?', time: '8:14' },
++      { from: 'them', text: 'How about Dolphin Mall?', time: '8:14' },
+     ],
+   },
+   {
+@@ -169,7 +169,7 @@
+   { id: 'p2', name: 'Umbreon VMAX - Alt Art', set: 'Evolving Skies', number: '215/203', lang: 'EN', grade: 'PSA 10', price: 410, change: 4.1, volume: 98, image: cardImg(326309), trend: [40,41,39,42,43,44,42,45,46,47,46,48] },
+   { id: 'p3', name: 'Pikachu V - Rainbow', set: 'Celebrations', number: '025/025', lang: 'EN', grade: 'Raw', price: 78, change: -2.4, volume: 220, image: cardImg(326311), trend: [82,80,81,79,78,77,78,76,77,75,76,78] },
+   { id: 'p4', name: 'Mewtwo VSTAR - Gold', set: 'Crown Zenith', number: 'GG70', lang: 'EN', grade: 'BGS 9.5', price: 145, change: 1.8, volume: 64, image: cardImg(326310), trend: [14,14,15,14,15,15,16,15,16,16,15,15] },
+-  { id: 'p5', name: 'Lugia V - Alt Art', set: 'Silver Tempest', number: '215/195', lang: 'EN', grade: 'Raw', price: 64, change: 12.5, volume: 51, image: cardImg(326308), trend: [50,52,55,53,56,58,60,62,63,64,66,64] },
++  { id: 'p5', name: 'Lugia V - Alt Art', set: 'Silver South Beachst', number: '215/195', lang: 'EN', grade: 'Raw', price: 64, change: 12.5, volume: 51, image: cardImg(326308), trend: [50,52,55,53,56,58,60,62,63,64,66,64] },
+   { id: 'p6', name: 'Giratina VSTAR - Alt Art', set: 'Lost Origin', number: '212/196', lang: 'EN', grade: 'PSA 9', price: 92, change: -5.1, volume: 73, image: cardImg(326307), trend: [100,98,99,95,96,92,94,90,92,88,90,92] },
+   { id: 'p7', name: 'Rayquaza VMAX - Alt', set: 'Evolving Skies', number: '218/203', lang: 'JP', grade: 'PSA 10', price: 188, change: 6.7, volume: 40, image: cardImg(326306), trend: [16,17,18,17,19,20,19,21,22,21,23,24] },
+   { id: 'p8', name: 'Blaziken V - SR', set: 'Scarlet Violet', number: '215/198', lang: 'JP', grade: 'Raw', price: 34, change: -1.2, volume: 310, image: cardImg(326305), trend: [36,35,35,34,34,33,34,33,34,34,33,34] },
+@@ -179,14 +179,14 @@
+   { id: 'o1', name: 'Charizard ex - SIR', set: 'Paldean Fates', grade: 'PSA 10', copies: 1, avgCost: 280, value: 320, image: cardImg(326312) },
+   { id: 'o2', name: 'Umbreon VMAX - Alt Art', set: 'Evolving Skies', grade: 'PSA 10', copies: 1, avgCost: 380, value: 410, image: cardImg(326309) },
+   { id: 'o3', name: 'Pikachu V - Rainbow', set: 'Celebrations', grade: 'Raw', copies: 3, avgCost: 72, value: 78, image: cardImg(326311) },
+-  { id: 'o4', name: 'Lugia V - Alt Art', set: 'Silver Tempest', grade: 'Raw', copies: 2, avgCost: 55, value: 64, image: cardImg(326308) },
++  { id: 'o4', name: 'Lugia V - Alt Art', set: 'Silver South Beachst', grade: 'Raw', copies: 2, avgCost: 55, value: 64, image: cardImg(326308) },
+ ];
+ 
+ export const oracles: Oracle[] = [
+   {
+     id: 'or1', name: 'Charizard ex - SIR', set: 'Paldean Fates', grade: 'PSA 10', current: 320,
+     forecast: [{ label: 'Current', value: 320, delta: 0 }, { label: '3M', value: 365, delta: 14 }, { label: '1Y', value: 440, delta: 37.5 }],
+-    confidence: 78, horizon: '12 months', reasoning: 'Charizard SIR supply is tightening while PSA 10 population growth slows. Local demand in the Phoenix metro has outpaced new listings for 6 straight weeks.',
++    confidence: 78, horizon: '12 months', reasoning: 'Charizard SIR supply is tightening while PSA 10 population growth slows. Local demand in the Miami metro has outpaced new listings for 6 straight weeks.',
+     catalysts: ['Set out of print', 'PSA 10 pop growth slowing', 'Local demand outpacing supply'],
+     risks: ['Reprint rumor for 2026', 'Broader market pullback'],
+     trend: [30,31,32,31,34,36,35,38,40,41,44,48], shared: true, author: 'you', votes: 42,
+@@ -200,9 +200,9 @@
+     trend: [40,41,39,42,43,44,42,45,46,47,46,48], shared: true, author: 'NightShift', votes: 88,
+   },
+   {
+-    id: 'or3', name: 'Lugia V - Alt Art', set: 'Silver Tempest', grade: 'Raw', current: 64,
++    id: 'or3', name: 'Lugia V - Alt Art', set: 'Silver South Beachst', grade: 'Raw', current: 64,
+     forecast: [{ label: 'Current', value: 64, delta: 0 }, { label: '3M', value: 72, delta: 12.5 }, { label: '1Y', value: 95, delta: 48.4 }],
+-    confidence: 71, horizon: '12 months', reasoning: 'Silver Tempest is out of print and Lugia alt art raw copies are disappearing from local markets. Grading upside is significant.',
++    confidence: 71, horizon: '12 months', reasoning: 'Silver South Beachst is out of print and Lugia alt art raw copies are disappearing from local markets. Grading upside is significant.',
+     catalysts: ['Set out of print', 'Grading arbitrage opportunity', 'Lugia archetype meta relevance'],
+     risks: ['Raw copies still circulating online'],
+     trend: [50,52,55,53,56,58,60,62,63,64,66,64],
+@@ -211,11 +211,11 @@
+ 
+ export const threads: Thread[] = [
+   { id: 't1', title: 'Shared Oracle: Charizard ex SIR — 12 month outlook', author: 'you', avatar: 'Y', time: '2h', votes: 42, comments: 18, tags: ['Oracle', 'Charizard'], preview: 'Confidence 78%. Catalysts: set OOP, slowing PSA 10 pop. Risks: reprint rumor.', type: 'oracle', featured: true },
+-  { id: 't2', title: 'Anyone else seeing Lugia alt arts dry up locally?', author: 'ValleyCards', avatar: 'V', time: '5h', votes: 27, comments: 11, tags: ['Local', 'Lugia'], preview: 'Three meetups this week and zero raw Lugia alts. Are we out of Silver Tempest supply?', type: 'local' },
+-  { id: 't3', title: 'PSA 10 vs BGS 9.5 — which moves faster in Phoenix?', author: 'DesertTCG', avatar: 'D', time: '8h', votes: 19, comments: 24, tags: ['Grading', 'Discussion'], preview: 'I\'ve noticed PSA 10 listings sell ~30% faster locally. Anyone tracking this?', type: 'general' },
++  { id: 't2', title: 'Anyone else seeing Lugia alt arts dry up locally?', author: 'BiscayneCards', avatar: 'V', time: '5h', votes: 27, comments: 11, tags: ['Local', 'Lugia'], preview: 'Three meetups this week and zero raw Lugia alts. Are we out of Silver South Beachst supply?', type: 'local' },
++  { id: 't3', title: 'PSA 10 vs BGS 9.5 — which moves faster in Miami?', author: 'GablesTCG', avatar: 'D', time: '8h', votes: 19, comments: 24, tags: ['Grading', 'Discussion'], preview: 'I\'ve noticed PSA 10 listings sell ~30% faster locally. Anyone tracking this?', type: 'general' },
+   { id: 't4', title: 'Shared Oracle: Umbreon VMAX alt — short term pop', author: 'NightShift', avatar: 'N', time: '1d', votes: 88, comments: 32, tags: ['Oracle', 'Umbreon'], preview: 'Confidence 64%. 3M up ~5%, 1Y slightly negative. Moonbreon momentum vs large pop.', type: 'oracle' },
+-  { id: 't5', title: 'Tempe meetup recap — best pulls of the weekend', author: 'MesaCards', avatar: 'M', time: '1d', votes: 54, comments: 9, tags: ['Local', 'Pulls'], preview: 'Saw a live Charizard SIR pull at the swap meet. Crowd went wild.', type: 'local' },
+-  { id: 't6', title: 'Best meetup spots in the East Valley?', author: 'AZCardCo', avatar: 'A', time: '2d', votes: 15, comments: 21, tags: ['Local', 'Meetup'], preview: 'Tempe Marketplace feels safest for high-value trades. Anyone prefer elsewhere?', type: 'general' },
++  { id: 't5', title: 'South Beach meetup recap — best pulls of the weekend', author: 'HialeahCards', avatar: 'M', time: '1d', votes: 54, comments: 9, tags: ['Local', 'Pulls'], preview: 'Saw a live Charizard SIR pull at the swap meet. Crowd went wild.', type: 'local' },
++  { id: 't6', title: 'Best meetup spots in the Little Havana?', author: 'MiaCardCo', avatar: 'A', time: '2d', votes: 15, comments: 21, tags: ['Local', 'Meetup'], preview: 'Bayside Marketplace feels safest for high-value trades. Anyone prefer elsewhere?', type: 'general' },
+ ];
+ 
+ export const shopStats = {
+diff -ruN '--exclude=node_modules' '--exclude=dist' '--exclude=.git' orig/orig_src/src/tabs/BuyTab.tsx project-lion-testing/src/tabs/BuyTab.tsx
+--- orig/orig_src/src/tabs/BuyTab.tsx	2026-07-27 04:42:10.000000000 +0000
++++ project-lion-testing/src/tabs/BuyTab.tsx	2026-07-27 05:04:11.542345302 +0000
+@@ -14,6 +14,7 @@
+   ChevronDown,
+ } from 'lucide-react';
+ import { listings, Listing } from '@/data';
++import { ZipMap } from '@/components/ZipMap';
+ import {
+   Pill,
+   SearchBar,
+@@ -22,6 +23,7 @@
+   EmptyState,
+   SectionTitle,
+   FilterLabel,
++  PageHeader,
+ } from '@/components/ui';
+ 
+ const DISTANCES = ['5 mi', '15 mi', '25 mi', '50 mi'] as const;
+@@ -36,22 +38,21 @@
+   zip: string;
+   city: string;
+   state: string;
+-  polygon: string;
+-  cx: string;
+-  cy: string;
++  lng: number;
++  lat: number;
+ };
+ 
+ const ZIPS: ZipRegion[] = [
+-  { id: '85004', zip: '85004', city: 'Phoenix', state: 'AZ', polygon: '16,22 29,20 31,31 20,35 12,30', cx: '22', cy: '27' },
+-  { id: '85013', zip: '85013', city: 'Phoenix', state: 'AZ', polygon: '29,20 42,18 44,30 31,31', cx: '36', cy: '25' },
+-  { id: '85016', zip: '85016', city: 'Phoenix', state: 'AZ', polygon: '44,19 58,21 58,31 44,30', cx: '51', cy: '25' },
+-  { id: '85281', zip: '85281', city: 'Tempe', state: 'AZ', polygon: '41,31 55,31 57,41 45,45 36,40', cx: '48', cy: '37' },
+-  { id: '85282', zip: '85282', city: 'Tempe', state: 'AZ', polygon: '36,40 45,45 44,57 31,57 28,47', cx: '38', cy: '49' },
+-  { id: '85202', zip: '85202', city: 'Mesa', state: 'AZ', polygon: '45,45 58,41 66,49 63,60 44,57', cx: '55', cy: '51' },
+-  { id: '85257', zip: '85257', city: 'Scottsdale', state: 'AZ', polygon: '58,21 72,22 74,38 57,41 55,31', cx: '66', cy: '31' },
+-  { id: '85301', zip: '85301', city: 'Glendale', state: 'AZ', polygon: '7,18 16,22 12,30 5,28 3,22', cx: '10', cy: '24' },
+-  { id: '85302', zip: '85302', city: 'Glendale', state: 'AZ', polygon: '12,30 20,35 18,46 8,43 5,28', cx: '13', cy: '37' },
+-  { id: '85224', zip: '85224', city: 'Chandler', state: 'AZ', polygon: '31,57 44,57 48,68 32,71 24,64', cx: '37', cy: '64' },
++  { id: '33133', zip: '33133', city: 'Coconut Grove', state: 'FL', lng: -80.2371, lat: 25.733 },
++  { id: '33139', zip: '33139', city: 'South Beach', state: 'FL', lng: -80.147, lat: 25.7889 },
++  { id: '33130', zip: '33130', city: 'Downtown Miami', state: 'FL', lng: -80.2027, lat: 25.7691 },
++  { id: '33125', zip: '33125', city: 'Flagami', state: 'FL', lng: -80.2389, lat: 25.7821 },
++  { id: '33127', zip: '33127', city: 'Wynwood', state: 'FL', lng: -80.204, lat: 25.8169 },
++  { id: '33150', zip: '33150', city: 'Little River', state: 'FL', lng: -80.2097, lat: 25.8503 },
++  { id: '33141', zip: '33141', city: 'North Beach', state: 'FL', lng: -80.1334, lat: 25.8463 },
++  { id: '33012', zip: '33012', city: 'Hialeah', state: 'FL', lng: -80.2978, lat: 25.8622 },
++  { id: '33134', zip: '33134', city: 'Coral Gables', state: 'FL', lng: -80.2689, lat: 25.7573 },
++  { id: '33101', zip: '33101', city: 'Downtown Miami', state: 'FL', lng: -80.1986, lat: 25.7792 },
+ ];
+ 
+ export function BuyTab({ search }: { search: string }) {
+@@ -61,7 +62,7 @@
+   const [cond, setCond] = useState<(typeof CONDITIONS)[number]>('Any');
+   const [sort, setSort] = useState<(typeof SORTS)[number]>('Nearest');
+   const [localSearch, setLocalSearch] = useState('');
+-  const [selectedZip, setSelectedZip] = useState('85281');
++  const [selectedZip, setSelectedZip] = useState('33130');
+   const [hoverZip, setHoverZip] = useState<string | null>(null);
+ 
+   const q = (search || localSearch).toLowerCase();
+@@ -97,6 +98,11 @@
+ 
+   return (
+     <div className="space-y-6">
++      <PageHeader
++        title="Map-first card discovery"
++        sub="Browse listings by zip, compare nearby sellers, and explore the local market visually."
++      />
++
+       <div className="grid gap-6 xl:grid-cols-[300px_minmax(0,1fr)]">
+         <aside className="space-y-4 xl:sticky xl:top-[104px] xl:self-start">
+           <Card className="p-4">
+@@ -177,8 +183,7 @@
+             </div>
+ 
+             <div className="mt-4 text-xs text-text-muted leading-relaxed">
+-              Every zip is outlined so the map becomes the product. Hover should preview the area, and clicking a zip
+-              should fully sync the results rail.
++              Hover a zip to preview it, or click to sync the results list to that area.
+             </div>
+           </Card>
+         </aside>
+@@ -202,68 +207,14 @@
+                 </div>
+ 
+                 <div className="relative h-[560px] bg-[#12110e]">
+-                  <div
+-                    className="absolute inset-0 opacity-[0.16]"
+-                    style={{
+-                      backgroundImage:
+-                        'linear-gradient(rgba(255,210,113,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,210,113,0.08) 1px, transparent 1px)',
+-                      backgroundSize: '36px 36px',
+-                    }}
++                  <ZipMap
++                    selectedZip={selectedZip}
++                    hoverZip={hoverZip}
++                    onHoverZip={setHoverZip}
++                    onSelectZip={setSelectedZip}
++                    hasListings={(zip) => (zipRegions.find((z) => z.zip === zip)?.listings.length ?? 0) > 0}
+                   />
+ 
+-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_28%,rgba(240,181,73,0.10),transparent_22%),radial-gradient(circle_at_25%_55%,rgba(240,181,73,0.08),transparent_18%),radial-gradient(circle_at_75%_72%,rgba(240,181,73,0.08),transparent_24%)]" />
+-
+-                  <svg viewBox="0 0 80 80" className="absolute inset-0 w-full h-full">
+-                    {zipRegions.map((region) => {
+-                      const active = activeRegion.zip === region.zip;
+-                      const selected = selectedRegion.zip === region.zip;
+-                      const density = region.listings.length;
+-
+-                      return (
+-                        <g key={region.id}>
+-                          <polygon
+-                            points={region.polygon}
+-                            onMouseEnter={() => setHoverZip(region.zip)}
+-                            onMouseLeave={() => setHoverZip(null)}
+-                            onClick={() => setSelectedZip(region.zip)}
+-                            className="cursor-pointer transition-all duration-150"
+-                            fill={
+-                              selected
+-                                ? 'rgba(247, 190, 83, 0.38)'
+-                                : active
+-                                ? 'rgba(247, 190, 83, 0.24)'
+-                                : density
+-                                ? 'rgba(247, 190, 83, 0.10)'
+-                                : 'rgba(255,255,255,0.03)'
+-                            }
+-                            stroke={selected ? '#f7be53' : active ? '#ddb15b' : 'rgba(255,255,255,0.18)'}
+-                            strokeWidth={selected ? 0.7 : 0.45}
+-                          />
+-
+-                          <circle
+-                            cx={region.cx}
+-                            cy={region.cy}
+-                            r={selected ? '2.2' : '1.7'}
+-                            fill={selected ? '#f7be53' : '#b9a98a'}
+-                          />
+-
+-                          <text
+-                            x={region.cx}
+-                            y={region.cy}
+-                            textAnchor="middle"
+-                            dominantBaseline="middle"
+-                            dy="-3"
+-                            fontSize="2.3"
+-                            fill={selected ? '#fff1cb' : '#bcb29d'}
+-                            className="pointer-events-none select-none"
+-                          >
+-                            {region.zip}
+-                          </text>
+-                        </g>
+-                      );
+-                    })}
+-                  </svg>
+-
+                   <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+                     <MapLegendItem label="Selected zip" tone="selected" />
+                     <MapLegendItem label="Hovered zip" tone="hovered" />
+@@ -369,11 +320,9 @@
+                 <Store size={18} />
+               </div>
+               <div>
+-                <div className="text-sm font-semibold">Why this works better as a website</div>
++                <div className="text-sm font-semibold">Can't find what you're looking for?</div>
+                 <div className="text-sm text-text-muted mt-1 leading-relaxed">
+-                  The mobile screenshot has the right dark/gold tone, but desktop Buy should let the map own the page.
+-                  A zip-outlined canvas plus a fixed results rail makes Lion Market feel like a real local marketplace,
+-                  not just a card search app.
++                  Post a wanted ad and nearby sellers will get notified when they list a match.
+                 </div>
+               </div>
+             </div>
+diff -ruN '--exclude=node_modules' '--exclude=dist' '--exclude=.git' orig/orig_src/src/tabs/CrowdTab.tsx project-lion-testing/src/tabs/CrowdTab.tsx
+--- orig/orig_src/src/tabs/CrowdTab.tsx	2026-07-27 04:42:10.000000000 +0000
++++ project-lion-testing/src/tabs/CrowdTab.tsx	2026-07-27 05:04:40.840213983 +0000
+@@ -16,7 +16,7 @@
+ import { Card, Tag, Avatar, PageHeader, Pill } from '@/components/ui';
+ 
+ const FEEDS = ['Hot', 'New', 'Top', 'Local', 'Shared Oracles'] as const;
+-const SIDEBAR_TAGS = ['Pokemon', 'Modern', 'Playables', 'High End', 'Phoenix', 'One Piece'];
++const SIDEBAR_TAGS = ['Pokemon', 'Modern', 'Playables', 'High End', 'Miami', 'One Piece'];
+ 
+ export function CrowdTab() {
+   const [feed, setFeed] = useState<(typeof FEEDS)[number]>('Hot');
+@@ -69,8 +69,7 @@
+             </div>
+             <h2 className="text-2xl font-semibold tracking-tight max-w-2xl">{featured.title}</h2>
+             <p className="text-sm text-text-muted mt-3 max-w-2xl leading-relaxed">
+-              The best version of Crowd should feel like the main collector conversation layer inside Lion Market,
+-              not an afterthought under Oracle.
++              The top thread from local collectors right now, based on upvotes and reply activity.
+             </p>
+ 
+             <div className="flex flex-wrap items-center gap-2 mt-4">
+@@ -88,7 +87,7 @@
+             <div className="grid grid-cols-3 gap-3">
+               <MiniStat label="Threads" value={String(threads.length)} />
+               <MiniStat label="Active today" value="84" />
+-              <MiniStat label="Phoenix local" value="19" />
++              <MiniStat label="Miami local" value="19" />
+             </div>
+ 
+             <div className="mt-5 pt-5 border-t border-border space-y-2.5">
+@@ -183,7 +182,7 @@
+           <Card className="p-4">
+             <div className="text-sm font-semibold mb-3">Community pulse</div>
+             <div className="space-y-3">
+-              <PulseRow icon={<MapPin size={14} className="text-accent" />} title="Local pickups" sub="Tempe and Mesa most active tonight" />
++              <PulseRow icon={<MapPin size={14} className="text-accent" />} title="Local pickups" sub="South Beach and Hialeah most active tonight" />
+               <PulseRow icon={<Clock3 size={14} className="text-accent" />} title="Fastest threads" sub="Questions with images are getting the quickest replies" />
+               <PulseRow icon={<Trophy size={14} className="text-accent" />} title="Best engagement" sub="Market calls with receipts outperform generic opinions" />
+             </div>
+@@ -234,7 +233,7 @@
+ 
+         <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mt-3 text-xs text-text-faint">
+           <span>posted by u/{author}</span>
+-          <span>{thread.area || 'Phoenix metro'}</span>
++          <span>{thread.area || 'Miami metro'}</span>
+           <span className="flex items-center gap-1">
+             <MessageCircle size={12} />
+             {comments} comments
+diff -ruN '--exclude=node_modules' '--exclude=dist' '--exclude=.git' orig/orig_src/src/tabs/MsgTab.tsx project-lion-testing/src/tabs/MsgTab.tsx
+--- orig/orig_src/src/tabs/MsgTab.tsx	2026-07-27 04:42:10.000000000 +0000
++++ project-lion-testing/src/tabs/MsgTab.tsx	2026-07-27 05:04:40.835205130 +0000
+@@ -11,7 +11,7 @@
+   Clock3,
+ } from 'lucide-react';
+ import { conversations, Conversation } from '@/data';
+-import { Pill, Card, Avatar, EmptyState, Tag } from '@/components/ui';
++import { Pill, Card, Avatar, EmptyState, Tag, PageHeader } from '@/components/ui';
+ 
+ const SUGGESTED = [
+   'Sounds good, see you there.',
+@@ -45,6 +45,11 @@
+ 
+   return (
+     <div className="space-y-6">
++      <PageHeader
++        title="Keep deals moving"
++        sub="Handle negotiations, pickups, and follow-ups from one messaging workspace."
++      />
++
+       <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
+         <aside className="space-y-4">
+           <Card className="p-4">
+@@ -100,7 +105,7 @@
+             <div className="px-4 py-3.5 border-b border-border">
+               <div className="text-sm font-semibold">Inbox</div>
+               <div className="text-xs text-text-faint mt-1">
+-                Website version should feel like a real deal desk, not just a mobile message list.
++                {filtered.length} conversation{filtered.length === 1 ? '' : 's'}
+               </div>
+             </div>
+ 
+@@ -260,7 +265,7 @@
+                   <div>
+                     <div className="text-sm font-semibold">Deal context</div>
+                     <div className="text-xs text-text-faint mt-1">
+-                      This sidebar is the kind of website-only utility the mobile layout cannot really show well.
++                      Trust, location, and response details for this conversation.
+                     </div>
+                   </div>
+ 
+@@ -272,7 +277,7 @@
+                   <InfoCard
+                     icon={<MapPin size={14} className="text-accent" />}
+                     title="Meetup area"
+-                    sub="Phoenix metro pickup zones should surface here next."
++                    sub="Central Miami pickup zones, chosen by both parties."
+                   />
+                   <InfoCard
+                     icon={<Clock3 size={14} className="text-accent" />}
+diff -ruN '--exclude=node_modules' '--exclude=dist' '--exclude=.git' orig/orig_src/src/tabs/OracleTab.tsx project-lion-testing/src/tabs/OracleTab.tsx
+--- orig/orig_src/src/tabs/OracleTab.tsx	2026-07-27 04:42:10.000000000 +0000
++++ project-lion-testing/src/tabs/OracleTab.tsx	2026-07-27 04:51:21.318516627 +0000
+@@ -13,7 +13,7 @@
+   Radar,
+ } from 'lucide-react';
+ import { oracles, Oracle } from '@/data';
+-import { Pill, Card, Chip, Tag, Trend, EmptyState } from '@/components/ui';
++import { Pill, Card, Chip, Tag, Trend, EmptyState, PageHeader } from '@/components/ui';
+ import { Modal, ScanModal } from '@/components/Modal';
+ 
+ export function OracleTab() {
+@@ -60,6 +60,11 @@
+   return (
+     <>
+       <div className="space-y-6">
++        <PageHeader
++          title="Forecast with context"
++          sub="Use Oracle as a research companion layered on top of real price and listing data."
++        />
++
+         <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
+           <div className="space-y-4">
+             <Card className="overflow-hidden">
+@@ -69,11 +74,10 @@
+                     Oracle layer
+                   </div>
+                   <h2 className="text-2xl font-semibold tracking-tight max-w-2xl">
+-                    Oracle should support the marketplace, not overshadow it.
++                    Your personal card forecasts, ranked by confidence.
+                   </h2>
+                   <p className="text-sm text-text-muted mt-3 max-w-2xl leading-relaxed">
+-                    Your screenshot has the right visual tone, but on the website this page should feel like a research
+-                    companion layered on top of real price and listing behavior.
++                    Ask Oracle about a card and get a forecast grounded in current listings and price history.
+                   </p>
+ 
+                   <div className="mt-5 inline-flex rounded-card border border-border bg-surface p-1 w-full max-w-[420px]">
+@@ -129,8 +133,8 @@
+                     />
+                     <InsightBlock
+                       icon={<AlertTriangle size={14} className="text-negative" />}
+-                      title="Do not over-lead with AI"
+-                      sub="The product should still feel market-led, not chatbot-led."
++                      title="Treat as a signal, not a guarantee"
++                      sub="Forecasts reflect current trends and can shift as new listings come in."
+                     />
+                   </div>
+                 </div>
+@@ -177,10 +181,9 @@
+             </Card>
+ 
+             <Card className="p-4">
+-              <div className="text-sm font-semibold mb-3">Best website upgrade next</div>
++              <div className="text-sm font-semibold mb-3">How forecasts are built</div>
+               <p className="text-sm text-text-muted leading-relaxed">
+-                Oracle should eventually cross-link into Buy and Price so each forecast can reference live listings,
+-                local zip activity, and collection exposure.
++                Each forecast references live listings, recent price movement, and local demand for that card.
+               </p>
+             </Card>
+           </div>
+diff -ruN '--exclude=node_modules' '--exclude=dist' '--exclude=.git' orig/orig_src/src/tabs/PriceTab.tsx project-lion-testing/src/tabs/PriceTab.tsx
+--- orig/orig_src/src/tabs/PriceTab.tsx	2026-07-27 04:42:10.000000000 +0000
++++ project-lion-testing/src/tabs/PriceTab.tsx	2026-07-27 04:51:37.528592641 +0000
+@@ -86,7 +86,7 @@
+               Market pulse
+             </div>
+             <h2 className="text-2xl font-semibold tracking-tight max-w-2xl">
+-              Real-time pricing should feel like the product core, not a side dashboard.
++              Live pricing across the sets and cards you're tracking, updated as the market moves.
+             </h2>
+             <p className="text-sm text-text-muted mt-3 max-w-2xl leading-relaxed">
+               Lion Market is strongest when pricing, demand, and collector movement all feel connected to actual
+@@ -253,8 +253,7 @@
+                 <span className="text-xs uppercase tracking-[0.16em] font-semibold">Oracle assist</span>
+               </div>
+               <p className="text-sm text-text-muted leading-relaxed">
+-                AI belongs here as a layer on top of real pricing data. Use it to summarize movement and highlight
+-                likely catalysts, not to replace the market page itself.
++                {strongest ? `${strongest.name} is leading today's movers, up ${strongest.change.toFixed(1)}%.` : 'No standout movers match your current filters.'}
+               </p>
+             </div>
+           </Card>
+diff -ruN '--exclude=node_modules' '--exclude=dist' '--exclude=.git' orig/orig_src/src/tabs/SellTab.tsx project-lion-testing/src/tabs/SellTab.tsx
+--- orig/orig_src/src/tabs/SellTab.tsx	2026-07-27 04:42:10.000000000 +0000
++++ project-lion-testing/src/tabs/SellTab.tsx	2026-07-27 04:51:43.170144355 +0000
+@@ -71,8 +71,7 @@
+               <div>
+                 <h2 className="text-2xl font-semibold tracking-tight">Your local card shop profile</h2>
+                 <p className="text-sm text-text-muted mt-2 max-w-2xl leading-relaxed">
+-                  The mobile sell screen in your mock is clean, but the website version should act more like a
+-                  storefront control center with inventory, velocity, views, and local meetup readiness.
++                  Track live inventory, listing velocity, buyer views, and meetup readiness in one place.
+                 </p>
+               </div>
+ 
+@@ -120,7 +119,7 @@
+               />
+               <SignalRow
+                 title="Conversion"
+-                sub="Bundles and meetup-ready inventory should become stronger website modules next."
++                sub="Bundled listings and meetup-ready inventory are converting fastest this week."
+               />
+             </div>
+           </div>
+@@ -186,7 +185,7 @@
+                   title={seg === 'live' ? 'No live listings yet' : seg === 'hidden' ? 'No hidden listings' : 'No sold history yet'}
+                   sub={
+                     seg === 'live'
+-                      ? 'The screenshots show a simple empty state, but the website version should push users toward building a real storefront.'
++                      ? 'List your first card to start building your storefront.'
+                       : 'When listing states change, they will show up here.'
+                   }
+                   action={
