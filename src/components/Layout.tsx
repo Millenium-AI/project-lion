@@ -1,4 +1,4 @@
-import { ReactNode, useMemo, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import {
   Search,
   ShoppingBag,
@@ -27,39 +27,6 @@ const NAV: { id: Tab; label: string; short: string; icon: typeof Search; blurb: 
   { id: 'crowd', label: 'Crowd', short: 'Crowd', icon: Users, blurb: 'Collector feed and discussion' },
 ];
 
-const TAB_META: Record<Tab, { eyebrow: string; title: string; sub: string }> = {
-  buy: {
-    eyebrow: 'Local marketplace',
-    title: 'Map-first card discovery',
-    sub: 'Browse listings by zip, compare nearby sellers, and explore the peer-to-peer market visually.',
-  },
-  sell: {
-    eyebrow: 'Seller workspace',
-    title: 'Run your storefront',
-    sub: 'Manage inventory, tune pricing, and convert buyer attention into local sales.',
-  },
-  msg: {
-    eyebrow: 'Conversations',
-    title: 'Keep deals moving',
-    sub: 'Handle negotiations, pickups, and follow-ups in a desktop messaging workspace.',
-  },
-  price: {
-    eyebrow: 'Market intelligence',
-    title: 'Track movement across the market',
-    sub: 'Follow gainers, drops, volume, and collection exposure from one central board.',
-  },
-  oracle: {
-    eyebrow: 'AI assist',
-    title: 'Forecast with context',
-    sub: 'Use Oracle as a support layer on top of listings and market data, not as the main story.',
-  },
-  crowd: {
-    eyebrow: 'Community',
-    title: 'Follow the collector conversation',
-    sub: 'Read local threads, shared forecasts, and card-specific discussion in one feed.',
-  },
-};
-
 export function Layout({
   tab,
   setTab,
@@ -77,12 +44,11 @@ export function Layout({
 }) {
   const [scanOpen, setScanOpen] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const current = useMemo(() => TAB_META[tab], [tab]);
 
   return (
     <div className="min-h-screen bg-bg text-text">
       <div className="min-h-screen grid lg:grid-cols-[292px_minmax(0,1fr)]">
-        <aside className="hidden lg:flex lg:flex-col border-r border-border bg-[#171612]">
+        <aside className="hidden lg:flex lg:flex-col lg:sticky lg:top-0 lg:h-screen lg:self-start border-r border-border bg-[#171612]">
           <div className="h-20 px-6 border-b border-border flex items-center justify-between">
             <button onClick={() => setTab('buy')} className="tap flex items-center gap-3 text-left">
               <div className="w-11 h-11 rounded-2xl border border-accent/20 bg-accent/10 flex items-center justify-center">
@@ -118,12 +84,12 @@ export function Layout({
                 <MapPin size={13} className="text-accent" />
                 Active area
               </div>
-              <div className="text-sm font-medium mt-2">Phoenix, AZ</div>
+              <div className="text-sm font-medium mt-2">Miami, FL</div>
               <div className="text-xs text-text-muted mt-1">Showing listings within 15 miles. Change area anytime.</div>
             </div>
           </div>
 
-          <nav className="px-3 py-4 flex-1 overflow-auto">
+          <nav className="px-3 py-4 flex-1">
             <div className="text-[11px] uppercase tracking-[0.18em] text-text-faint font-semibold px-3 pb-2">
               Navigation
             </div>
@@ -201,37 +167,10 @@ export function Layout({
                 <span className="font-bold text-[15px] tracking-tight">Lion Market</span>
               </button>
 
-              <div className="hidden lg:flex min-w-0 flex-1 items-center gap-6">
-                <div className="min-w-0">
-                  <div className="text-[11px] uppercase tracking-[0.16em] text-text-faint font-semibold">
-                    {current.eyebrow}
-                  </div>
-                  <div className="text-lg font-semibold tracking-tight truncate">{current.title}</div>
-                </div>
-
-                <div className="flex-1 max-w-2xl">
-                  <div className="flex items-center gap-2.5 rounded-[20px] border border-border bg-surface px-3.5 py-2.5">
-                    <Search size={16} className="text-text-faint shrink-0" />
-                    <input
-                      value={search}
-                      onChange={(e) => setSearch(e.target.value)}
-                      placeholder="Search cards, sets, sellers, zip codes"
-                      className="bg-transparent outline-none text-sm text-text placeholder:text-text-faint flex-1 min-w-0"
-                    />
-                    <button
-                      onClick={() => setScanOpen(true)}
-                      className="tap rounded-full border border-accent/20 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-accent shrink-0"
-                    >
-                      Scan
-                    </button>
-                  </div>
-                </div>
-              </div>
-
               <div className="ml-auto flex items-center gap-2 shrink-0">
                 <div className="hidden md:flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-2 text-xs text-text-muted">
                   <MapPin size={13} className="text-accent" />
-                  Phoenix, AZ
+                  Miami, FL
                 </div>
 
                 <button className="tap hidden sm:flex w-10 h-10 rounded-full border border-border bg-surface items-center justify-center text-text-muted hover:text-text">

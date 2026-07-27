@@ -16,7 +16,7 @@ import { threads, profile } from '@/data';
 import { Card, Tag, Avatar, PageHeader, Pill } from '@/components/ui';
 
 const FEEDS = ['Hot', 'New', 'Top', 'Local', 'Shared Oracles'] as const;
-const SIDEBAR_TAGS = ['Pokemon', 'Modern', 'Playables', 'High End', 'Phoenix', 'One Piece'];
+const SIDEBAR_TAGS = ['Pokemon', 'Modern', 'Playables', 'High End', 'Miami', 'One Piece'];
 
 export function CrowdTab() {
   const [feed, setFeed] = useState<(typeof FEEDS)[number]>('Hot');
@@ -87,7 +87,7 @@ export function CrowdTab() {
             <div className="grid grid-cols-3 gap-3">
               <MiniStat label="Threads" value={String(threads.length)} />
               <MiniStat label="Active today" value="84" />
-              <MiniStat label="Phoenix local" value="19" />
+              <MiniStat label="Miami local" value="19" />
             </div>
 
             <div className="mt-5 pt-5 border-t border-border space-y-2.5">
@@ -182,7 +182,7 @@ export function CrowdTab() {
           <Card className="p-4">
             <div className="text-sm font-semibold mb-3">Community pulse</div>
             <div className="space-y-3">
-              <PulseRow icon={<MapPin size={14} className="text-accent" />} title="Local pickups" sub="Tempe and Mesa most active tonight" />
+              <PulseRow icon={<MapPin size={14} className="text-accent" />} title="Local pickups" sub="South Beach and Hialeah most active tonight" />
               <PulseRow icon={<Clock3 size={14} className="text-accent" />} title="Fastest threads" sub="Questions with images are getting the quickest replies" />
               <PulseRow icon={<Trophy size={14} className="text-accent" />} title="Best engagement" sub="Market calls with receipts outperform generic opinions" />
             </div>
@@ -233,7 +233,7 @@ function ThreadRow({ thread }: { thread: any }) {
 
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mt-3 text-xs text-text-faint">
           <span>posted by u/{author}</span>
-          <span>{thread.area || 'Phoenix metro'}</span>
+          <span>{thread.area || 'Miami metro'}</span>
           <span className="flex items-center gap-1">
             <MessageCircle size={12} />
             {comments} comments

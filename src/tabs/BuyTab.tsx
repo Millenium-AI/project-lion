@@ -14,6 +14,7 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { listings, Listing } from '@/data';
+import { ZipMap } from '@/components/ZipMap';
 import {
   Pill,
   SearchBar,
@@ -37,22 +38,21 @@ type ZipRegion = {
   zip: string;
   city: string;
   state: string;
-  polygon: string;
-  cx: string;
-  cy: string;
+  lng: number;
+  lat: number;
 };
 
 const ZIPS: ZipRegion[] = [
-  { id: '85004', zip: '85004', city: 'Phoenix', state: 'AZ', polygon: '16,22 29,20 31,31 20,35 12,30', cx: '22', cy: '27' },
-  { id: '85013', zip: '85013', city: 'Phoenix', state: 'AZ', polygon: '29,20 42,18 44,30 31,31', cx: '36', cy: '25' },
-  { id: '85016', zip: '85016', city: 'Phoenix', state: 'AZ', polygon: '44,19 58,21 58,31 44,30', cx: '51', cy: '25' },
-  { id: '85281', zip: '85281', city: 'Tempe', state: 'AZ', polygon: '41,31 55,31 57,41 45,45 36,40', cx: '48', cy: '37' },
-  { id: '85282', zip: '85282', city: 'Tempe', state: 'AZ', polygon: '36,40 45,45 44,57 31,57 28,47', cx: '38', cy: '49' },
-  { id: '85202', zip: '85202', city: 'Mesa', state: 'AZ', polygon: '45,45 58,41 66,49 63,60 44,57', cx: '55', cy: '51' },
-  { id: '85257', zip: '85257', city: 'Scottsdale', state: 'AZ', polygon: '58,21 72,22 74,38 57,41 55,31', cx: '66', cy: '31' },
-  { id: '85301', zip: '85301', city: 'Glendale', state: 'AZ', polygon: '7,18 16,22 12,30 5,28 3,22', cx: '10', cy: '24' },
-  { id: '85302', zip: '85302', city: 'Glendale', state: 'AZ', polygon: '12,30 20,35 18,46 8,43 5,28', cx: '13', cy: '37' },
-  { id: '85224', zip: '85224', city: 'Chandler', state: 'AZ', polygon: '31,57 44,57 48,68 32,71 24,64', cx: '37', cy: '64' },
+  { id: '33133', zip: '33133', city: 'Coconut Grove', state: 'FL', lng: -80.2371, lat: 25.733 },
+  { id: '33139', zip: '33139', city: 'South Beach', state: 'FL', lng: -80.147, lat: 25.7889 },
+  { id: '33130', zip: '33130', city: 'Downtown Miami', state: 'FL', lng: -80.2027, lat: 25.7691 },
+  { id: '33125', zip: '33125', city: 'Flagami', state: 'FL', lng: -80.2389, lat: 25.7821 },
+  { id: '33127', zip: '33127', city: 'Wynwood', state: 'FL', lng: -80.204, lat: 25.8169 },
+  { id: '33150', zip: '33150', city: 'Little River', state: 'FL', lng: -80.2097, lat: 25.8503 },
+  { id: '33141', zip: '33141', city: 'North Beach', state: 'FL', lng: -80.1334, lat: 25.8463 },
+  { id: '33012', zip: '33012', city: 'Hialeah', state: 'FL', lng: -80.2978, lat: 25.8622 },
+  { id: '33134', zip: '33134', city: 'Coral Gables', state: 'FL', lng: -80.2689, lat: 25.7573 },
+  { id: '33101', zip: '33101', city: 'Downtown Miami', state: 'FL', lng: -80.1986, lat: 25.7792 },
 ];
 
 export function BuyTab({ search }: { search: string }) {
@@ -62,7 +62,7 @@ export function BuyTab({ search }: { search: string }) {
   const [cond, setCond] = useState<(typeof CONDITIONS)[number]>('Any');
   const [sort, setSort] = useState<(typeof SORTS)[number]>('Nearest');
   const [localSearch, setLocalSearch] = useState('');
-  const [selectedZip, setSelectedZip] = useState('85281');
+  const [selectedZip, setSelectedZip] = useState('33130');
   const [hoverZip, setHoverZip] = useState<string | null>(null);
 
   const q = (search || localSearch).toLowerCase();
@@ -207,67 +207,13 @@ export function BuyTab({ search }: { search: string }) {
                 </div>
 
                 <div className="relative h-[560px] bg-[#12110e]">
-                  <div
-                    className="absolute inset-0 opacity-[0.16]"
-                    style={{
-                      backgroundImage:
-                        'linear-gradient(rgba(255,210,113,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,210,113,0.08) 1px, transparent 1px)',
-                      backgroundSize: '36px 36px',
-                    }}
+                  <ZipMap
+                    selectedZip={selectedZip}
+                    hoverZip={hoverZip}
+                    onHoverZip={setHoverZip}
+                    onSelectZip={setSelectedZip}
+                    hasListings={(zip) => (zipRegions.find((z) => z.zip === zip)?.listings.length ?? 0) > 0}
                   />
-
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_28%,rgba(240,181,73,0.10),transparent_22%),radial-gradient(circle_at_25%_55%,rgba(240,181,73,0.08),transparent_18%),radial-gradient(circle_at_75%_72%,rgba(240,181,73,0.08),transparent_24%)]" />
-
-                  <svg viewBox="0 0 80 80" className="absolute inset-0 w-full h-full">
-                    {zipRegions.map((region) => {
-                      const active = activeRegion.zip === region.zip;
-                      const selected = selectedRegion.zip === region.zip;
-                      const density = region.listings.length;
-
-                      return (
-                        <g key={region.id}>
-                          <polygon
-                            points={region.polygon}
-                            onMouseEnter={() => setHoverZip(region.zip)}
-                            onMouseLeave={() => setHoverZip(null)}
-                            onClick={() => setSelectedZip(region.zip)}
-                            className="cursor-pointer transition-all duration-150"
-                            fill={
-                              selected
-                                ? 'rgba(247, 190, 83, 0.38)'
-                                : active
-                                ? 'rgba(247, 190, 83, 0.24)'
-                                : density
-                                ? 'rgba(247, 190, 83, 0.10)'
-                                : 'rgba(255,255,255,0.03)'
-                            }
-                            stroke={selected ? '#f7be53' : active ? '#ddb15b' : 'rgba(255,255,255,0.18)'}
-                            strokeWidth={selected ? 0.7 : 0.45}
-                          />
-
-                          <circle
-                            cx={region.cx}
-                            cy={region.cy}
-                            r={selected ? '2.2' : '1.7'}
-                            fill={selected ? '#f7be53' : '#b9a98a'}
-                          />
-
-                          <text
-                            x={region.cx}
-                            y={region.cy}
-                            textAnchor="middle"
-                            dominantBaseline="middle"
-                            dy="-3"
-                            fontSize="2.3"
-                            fill={selected ? '#fff1cb' : '#bcb29d'}
-                            className="pointer-events-none select-none"
-                          >
-                            {region.zip}
-                          </text>
-                        </g>
-                      );
-                    })}
-                  </svg>
 
                   <div className="absolute left-4 top-4 flex flex-wrap gap-2">
                     <MapLegendItem label="Selected zip" tone="selected" />

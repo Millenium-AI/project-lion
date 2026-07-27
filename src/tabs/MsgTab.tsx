@@ -277,7 +277,7 @@ export function MsgTab() {
                   <InfoCard
                     icon={<MapPin size={14} className="text-accent" />}
                     title="Meetup area"
-                    sub="Central Phoenix pickup zones, chosen by both parties."
+                    sub="Central Miami pickup zones, chosen by both parties."
                   />
                   <InfoCard
                     icon={<Clock3 size={14} className="text-accent" />}
