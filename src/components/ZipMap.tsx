@@ -1,55 +1,88 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as maplibregl from 'maplibre-gl';
-import type { Map as MLMap, MapMouseEvent } from 'maplibre-gl';
+import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
+import type { Map as MLMap, MapGeoJSONFeature, MapLayerMouseEvent } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import miamiZips from '@/data/miami_zips.geojson?url';
+import miamiZipsUrl from '@/data/miami_zips.geojson?url';
 
-// Free, open-source, no API key required:
-// - MapLibre GL JS renders the map (Mapbox GL fork, open source)
-// - OpenFreeMap serves the vector basemap tiles for free with no key/usage limits
-// - Zip boundaries are real US Census ZCTA polygons (src/data/miami_zips.geojson)
+maplibregl.setWorkerUrl(workerUrl);
 
-export function ZipMap({
-  selectedZip,
-  hoverZip,
-  onHoverZip,
-  onSelectZip,
-  hasListings,
-}: {
+const MAP_STYLE_URL = 'https://tiles.openfreemap.org/styles/dark';
+const MIAMI_CENTER: [number, number] = [-80.205, 25.79];
+const DEFAULT_ZOOM = 11.2;
+
+const FILL_COLOR: maplibregl.ExpressionSpecification = [
+  'case',
+  ['boolean', ['feature-state', 'selected'], false],
+  'rgba(247, 190, 83, 0.42)',
+  ['boolean', ['feature-state', 'hover'], false],
+  'rgba(247, 190, 83, 0.24)',
+  'rgba(247, 190, 83, 0.10)',
+];
+
+const LINE_COLOR: maplibregl.ExpressionSpecification = [
+  'case',
+  ['boolean', ['feature-state', 'selected'], false],
+  '#f7be53',
+  ['boolean', ['feature-state', 'hover'], false],
+  'rgba(247, 190, 83, 0.9)',
+  'rgba(255,255,255,0.35)',
+];
+
+const LINE_WIDTH: maplibregl.ExpressionSpecification = [
+  'case',
+  ['boolean', ['feature-state', 'selected'], false],
+  2.5,
+  ['boolean', ['feature-state', 'hover'], false],
+  1.8,
+  1,
+];
+
+interface ZipMapProps {
   selectedZip: string;
-  hoverZip: string | null;
   onHoverZip: (zip: string | null) => void;
   onSelectZip: (zip: string) => void;
-  hasListings: (zip: string) => boolean;
-}) {
+}
+
+export function ZipMap({ selectedZip, onHoverZip, onSelectZip }: ZipMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MLMap | null>(null);
-  const selectedZipRef = useRef(selectedZip);
-  const hoverZipRef = useRef(hoverZip);
-  const hasListingsRef = useRef(hasListings);
-  selectedZipRef.current = selectedZip;
-  hoverZipRef.current = hoverZip;
-  hasListingsRef.current = hasListings;
+  const hoveredIdRef = useRef<string | number | undefined>(undefined);
+  const selectedIdRef = useRef<string | number | undefined>(undefined);
+  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
 
     const map = new maplibregl.Map({
       container: containerRef.current,
-      style: 'https://tiles.openfreemap.org/styles/dark',
-      center: [-80.205, 25.79],
-      zoom: 11.4,
+      style: MAP_STYLE_URL,
+      center: MIAMI_CENTER,
+      zoom: DEFAULT_ZOOM,
       attributionControl: { compact: true },
     });
 
     mapRef.current = map;
-
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+
+    const clearHover = () => {
+      if (hoveredIdRef.current !== undefined && map.getSource('zips')) {
+        map.setFeatureState({ source: 'zips', id: hoveredIdRef.current }, { hover: false });
+      }
+      hoveredIdRef.current = undefined;
+      map.getCanvas().style.cursor = '';
+      onHoverZip(null);
+    };
+
+    map.on('error', (e) => {
+      console.error('ZipMap error:', e.error);
+      setStatus('error');
+    });
 
     map.on('load', () => {
       map.addSource('zips', {
         type: 'geojson',
-        data: miamiZips,
+        data: miamiZipsUrl,
         promoteId: 'zip',
       });
 
@@ -57,16 +90,7 @@ export function ZipMap({
         id: 'zip-fill',
         type: 'fill',
         source: 'zips',
-        paint: {
-          'fill-color': [
-            'case',
-            ['==', ['get', 'zip'], selectedZipRef.current],
-            'rgba(247, 190, 83, 0.38)',
-            ['boolean', ['feature-state', 'hover'], false],
-            'rgba(247, 190, 83, 0.24)',
-            'rgba(247, 190, 83, 0.08)',
-          ],
-        },
+        paint: { 'fill-color': FILL_COLOR },
       });
 
       map.addLayer({
@@ -74,13 +98,8 @@ export function ZipMap({
         type: 'line',
         source: 'zips',
         paint: {
-          'line-color': [
-            'case',
-            ['==', ['get', 'zip'], selectedZipRef.current],
-            '#f7be53',
-            'rgba(255,255,255,0.35)',
-          ],
-          'line-width': ['case', ['==', ['get', 'zip'], selectedZipRef.current], 2.5, 1],
+          'line-color': LINE_COLOR,
+          'line-width': LINE_WIDTH,
         },
       });
 
@@ -91,7 +110,6 @@ export function ZipMap({
         layout: {
           'text-field': ['get', 'zip'],
           'text-size': 12,
-          'text-font': ['Noto Sans Regular'],
         },
         paint: {
           'text-color': '#f1e6cf',
@@ -100,76 +118,80 @@ export function ZipMap({
         },
       });
 
-      let hoveredFeatureId: string | number | undefined;
+      map.on('mousemove', 'zip-fill', (e: MapLayerMouseEvent) => {
+        const feature = e.features?.[0] as MapGeoJSONFeature | undefined;
+        const id = feature?.id;
+        const zip = feature?.properties?.zip;
 
-      map.on('mousemove', 'zip-fill', (e: MapMouseEvent) => {
-        if (!e.features || e.features.length === 0) return;
-        const feature = e.features[0];
-        const zip = feature.properties?.zip as string;
+        if (id === undefined || !zip) return;
 
-        if (hoveredFeatureId !== undefined) {
-          map.setFeatureState({ source: 'zips', id: hoveredFeatureId }, { hover: false });
+        if (hoveredIdRef.current !== undefined && hoveredIdRef.current !== id) {
+          map.setFeatureState({ source: 'zips', id: hoveredIdRef.current }, { hover: false });
         }
-        hoveredFeatureId = feature.id;
-        if (hoveredFeatureId !== undefined) {
-          map.setFeatureState({ source: 'zips', id: hoveredFeatureId }, { hover: true });
-        }
+
+        hoveredIdRef.current = id;
+        map.setFeatureState({ source: 'zips', id }, { hover: true });
         map.getCanvas().style.cursor = 'pointer';
-        onHoverZip(zip);
+        onHoverZip(String(zip));
       });
 
-      map.on('mouseleave', 'zip-fill', () => {
-        if (hoveredFeatureId !== undefined) {
-          map.setFeatureState({ source: 'zips', id: hoveredFeatureId }, { hover: false });
-        }
-        hoveredFeatureId = undefined;
-        map.getCanvas().style.cursor = '';
-        onHoverZip(null);
+      map.on('mouseleave', 'zip-fill', clearHover);
+
+      map.on('click', 'zip-fill', (e: MapLayerMouseEvent) => {
+        const feature = e.features?.[0] as MapGeoJSONFeature | undefined;
+        const zip = feature?.properties?.zip;
+        if (zip) onSelectZip(String(zip));
       });
 
-      map.on('click', 'zip-fill', (e: MapMouseEvent) => {
-        if (!e.features || e.features.length === 0) return;
-        const zip = e.features[0].properties?.zip as string;
-        onSelectZip(zip);
-      });
+      if (selectedZip) {
+        selectedIdRef.current = selectedZip;
+        map.setFeatureState({ source: 'zips', id: selectedZip }, { selected: true });
+      }
+
+      setStatus('ready');
     });
 
     return () => {
       map.remove();
       mapRef.current = null;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [onHoverZip, onSelectZip, selectedZip]);
 
-  // Keep selected/hover styling in sync with React state changes triggered outside the map
-  // (e.g. clicking a result card in the list).
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || !map.isStyleLoaded() || !map.getLayer('zip-fill')) return;
+    if (!map || status !== 'ready' || !map.getSource('zips')) return;
 
-    map.setPaintProperty('zip-fill', 'fill-color', [
-      'case',
-      ['==', ['get', 'zip'], selectedZip],
-      'rgba(247, 190, 83, 0.38)',
-      ['boolean', ['feature-state', 'hover'], false],
-      'rgba(247, 190, 83, 0.24)',
-      'rgba(247, 190, 83, 0.08)',
-    ]);
+    if (selectedIdRef.current !== undefined) {
+      map.setFeatureState({ source: 'zips', id: selectedIdRef.current }, { selected: false });
+    }
 
-    map.setPaintProperty('zip-line', 'line-color', [
-      'case',
-      ['==', ['get', 'zip'], selectedZip],
-      '#f7be53',
-      'rgba(255,255,255,0.35)',
-    ]);
+    if (!selectedZip) {
+      selectedIdRef.current = undefined;
+      return;
+    }
 
-    map.setPaintProperty('zip-line', 'line-width', [
-      'case',
-      ['==', ['get', 'zip'], selectedZip],
-      2.5,
-      1,
-    ]);
-  }, [selectedZip]);
+    selectedIdRef.current = selectedZip;
+    map.setFeatureState({ source: 'zips', id: selectedZip }, { selected: true });
+  }, [selectedZip, status]);
 
-  return <div ref={containerRef} className="absolute inset-0" />;
+  return (
+    <div className="absolute inset-0">
+      <div ref={containerRef} className="absolute inset-0" />
+
+      {status === 'loading' && (
+        <div className="absolute inset-0 flex items-center justify-center bg-[#12110e] text-sm text-text-faint">
+          Loading map…
+        </div>
+      )}
+
+      {status === 'error' && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-[#12110e] px-6 text-center">
+          <div className="text-sm font-medium text-text">Map failed to load</div>
+          <div className="text-xs text-text-faint max-w-xs">
+            The basemap tiles could not be reached. Check your connection and refresh.
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }

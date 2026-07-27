@@ -209,10 +209,8 @@ export function BuyTab({ search }: { search: string }) {
                 <div className="relative h-[560px] bg-[#12110e]">
                   <ZipMap
                     selectedZip={selectedZip}
-                    hoverZip={hoverZip}
                     onHoverZip={setHoverZip}
                     onSelectZip={setSelectedZip}
-                    hasListings={(zip) => (zipRegions.find((z) => z.zip === zip)?.listings.length ?? 0) > 0}
                   />
 
                   <div className="absolute left-4 top-4 flex flex-wrap gap-2">
