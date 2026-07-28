@@ -10,6 +10,7 @@ import {
   Search as SearchIcon,
   Crosshair,
   Store,
+  ChevronDown,
 } from 'lucide-react';
 import { listings, Listing } from '@/data';
 import { ZipMap } from '@/components/ZipMap';
@@ -62,6 +63,7 @@ export function BuyTab({ search }: { search: string }) {
   const [localSearch, setLocalSearch] = useState('');
   const [selectedZip, setSelectedZip] = useState('33130');
   const [hoverZip, setHoverZip] = useState<string | null>(null);
+  const [filtersOpen, setFiltersOpen] = useState(true);
 
   const q = (search || localSearch).toLowerCase();
 
@@ -104,61 +106,36 @@ export function BuyTab({ search }: { search: string }) {
       <div className="grid gap-6 xl:grid-cols-[300px_minmax(0,1fr)]">
         <aside className="space-y-4 xl:sticky xl:top-[104px] xl:self-start">
           <Card className="p-4">
-            <div className="text-xs uppercase tracking-[0.18em] text-text-faint font-semibold mb-3">
-              Market search
+            <button
+              onClick={() => setFiltersOpen(!filtersOpen)}
+              className="w-full flex items-center justify-between gap-2 hover:opacity-75 transition-opacity"
+            >
+              <div className="text-xs uppercase tracking-[0.18em] text-text-faint font-semibold">
+                Market search
+              </div>
+              <ChevronDown size={16} className={`text-text-faint transition-transform ${filtersOpen ? '' : '-rotate-90'}`} />
+            </button>
+
+            <div className="mt-3">
+              <SearchBar
+                value={localSearch}
+                onChange={setLocalSearch}
+                placeholder="Search cards, sets, sellers, zip"
+              />
             </div>
 
-            <SearchBar
-              value={localSearch}
-              onChange={setLocalSearch}
-              placeholder="Search cards, sets, sellers, zip"
-            />
+            {filtersOpen && (
+              <div className="mt-4 space-y-4">
+                <FilterGroup label="View">
+                  <ViewToggle value={view} onChange={setView} />
+                </FilterGroup>
 
-            <div className="mt-4 space-y-4">
-              <FilterGroup label="View">
-                <ViewToggle value={view} onChange={setView} />
-              </FilterGroup>
-
-              <FilterGroup label="Distance">
-                <div className="flex flex-wrap gap-2">
-                  {DISTANCES.map((d) => (
-                    <Pill key={d} size="sm" tone="muted" active={distance === d} onClick={() => setDistance(d)}>
-                      {d}
-                    </Pill>
-                  ))}
-                </div>
-              </FilterGroup>
-
-              <FilterGroup label="Game">
-                <div className="flex flex-wrap gap-2">
-                  {GAMES.map((g) => (
-                    <Pill key={g} size="sm" tone="muted" active={game === g} onClick={() => setGame(g)}>
-                      {g}
-                    </Pill>
-                  ))}
-                </div>
-              </FilterGroup>
-
-              <FilterGroup label="Condition">
-                <div className="flex flex-wrap gap-2">
-                  {CONDITIONS.map((c) => (
-                    <Pill key={c} size="sm" tone="muted" active={cond === c} onClick={() => setCond(c)}>
-                      {c}
-                    </Pill>
-                  ))}
-                </div>
-              </FilterGroup>
-
-              <FilterGroup label="Sort">
-                <div className="flex flex-wrap gap-2">
-                  {SORTS.map((s) => (
-                    <Pill key={s} size="sm" tone="muted" active={sort === s} onClick={() => setSort(s)}>
-                      {s}
-                    </Pill>
-                  ))}
-                </div>
-              </FilterGroup>
-            </div>
+                <PillFilter label="Distance" value={distance} options={DISTANCES} onChange={setDistance} />
+                <PillFilter label="Game" value={game} options={GAMES} onChange={setGame} />
+                <PillFilter label="Condition" value={cond} options={CONDITIONS} onChange={setCond} />
+                <PillFilter label="Sort" value={sort} options={SORTS} onChange={setSort} />
+              </div>
+            )}
           </Card>
 
           <Card className="p-4">
@@ -340,6 +317,30 @@ function FilterGroup({ label, children }: { label: string; children: React.React
       <FilterLabel>{label}</FilterLabel>
       <div className="mt-2">{children}</div>
     </div>
+  );
+}
+
+function PillFilter<T extends string>({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: T;
+  options: readonly T[];
+  onChange: (v: T) => void;
+}) {
+  return (
+    <FilterGroup label={label}>
+      <div className="flex flex-wrap gap-2">
+        {options.map((opt) => (
+          <Pill key={opt} size="sm" tone="muted" active={value === opt} onClick={() => onChange(opt)}>
+            {opt}
+          </Pill>
+        ))}
+      </div>
+    </FilterGroup>
   );
 }
 
