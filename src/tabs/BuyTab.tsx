@@ -5,13 +5,11 @@ import {
   Plus,
   PackageOpen,
   Navigation,
-  SlidersHorizontal,
   Layers3,
   Bookmark,
   Search as SearchIcon,
   Crosshair,
   Store,
-  ChevronDown,
 } from 'lucide-react';
 import { listings, Listing } from '@/data';
 import { ZipMap } from '@/components/ZipMap';

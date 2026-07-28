@@ -3,17 +3,13 @@ import {
   Sparkles,
   Search,
   ScanLine,
-  Zap,
   TrendingUp,
   TrendingDown,
   AlertTriangle,
-  Users,
-  ChevronRight,
-  Activity,
   Radar,
 } from 'lucide-react';
 import { oracles, Oracle } from '@/data';
-import { Pill, Card, Chip, Tag, Trend, EmptyState, PageHeader } from '@/components/ui';
+import { Card, Chip, Tag, Trend, EmptyState, PageHeader } from '@/components/ui';
 import { Modal, ScanModal } from '@/components/Modal';
 
 export function OracleTab() {
@@ -190,20 +186,15 @@ export function OracleTab() {
         </div>
       </div>
 
-      <Modal
-        open={askOpen}
-        onClose={() => setAskOpen(false)}
-        title="Ask Oracle"
-        body={
-          <AskOracleForm
-            onSubmit={(name) => addOracle(name)}
-            onScan={() => {
-              setAskOpen(false);
-              setScanOpen(true);
-            }}
-          />
-        }
-      />
+      <Modal open={askOpen} onClose={() => setAskOpen(false)} title="Ask Oracle">
+        <AskOracleForm
+          onSubmit={(name) => addOracle(name)}
+          onScan={() => {
+            setAskOpen(false);
+            setScanOpen(true);
+          }}
+        />
+      </Modal>
 
       <ScanModal
         open={scanOpen}
@@ -263,7 +254,7 @@ function OracleCard({ o }: { o: Oracle }) {
     <Card className="overflow-hidden">
       <div className="p-4 border-b border-border">
         <div className="flex items-start gap-4">
-          <img src={(o as any).image || 'smol.png'} alt={o.name} className="w-20 h-28 rounded object-cover bg-surface-2 shrink-0" />
+          <img src="smol.png" alt={o.name} className="w-20 h-28 rounded object-cover bg-surface-2 shrink-0" />
 
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2 mb-2">

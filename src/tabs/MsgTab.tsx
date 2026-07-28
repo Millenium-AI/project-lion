@@ -5,7 +5,6 @@ import {
   MessageSquare,
   Bot,
   Search,
-  Archive,
   MapPin,
   ShieldCheck,
   Clock3,
@@ -333,6 +332,7 @@ function StatusChip({ status }: { status: Conversation['status'] }) {
     awaiting: 'default',
     meetup: 'positive',
     sold: 'negative',
+    autopilot: 'gold',
   };
 
   return <Tag tone={map[status]}>{status.replace('_', ' ')}</Tag>;

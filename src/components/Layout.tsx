@@ -12,13 +12,11 @@ import {
   Bell,
   Menu,
   X,
-  ChevronRight,
-  Plus,
 } from 'lucide-react';
 import { Tab } from '@/data';
 import { ScanModal } from './Modal';
 
-const SIDEBAR_WIDTH = 280;
+const SIDEBAR_WIDTH = 248;
 const ACTIVE_AREA = 'Miami, FL';
 
 type NavItem = { id: Tab; label: string; short: string; icon: typeof Search; blurb: string };
@@ -55,7 +53,7 @@ export function Layout({ tab, setTab, children, onScan, search, setSearch }: Lay
         onOpenScan={() => setScanOpen(true)}
       />
 
-      <div className="lg:pl-[280px] flex flex-col min-h-screen">
+      <div className="lg:pl-[248px] flex flex-col min-h-screen">
         <MobileHeader
           tab={tab}
           setTab={setTab}
@@ -67,8 +65,8 @@ export function Layout({ tab, setTab, children, onScan, search, setSearch }: Lay
         />
 
         <main className="flex-1 min-w-0">
-          <section className="px-4 lg:px-8 py-4 lg:py-6 pb-24 lg:pb-8">
-            <div className="mx-auto w-full max-w-[1600px]">{children}</div>
+          <section className="px-3 lg:px-5 py-3 lg:py-4 pb-20 lg:pb-6">
+            <div className="mx-auto w-full max-w-[1360px]">{children}</div>
           </section>
         </main>
       </div>
@@ -79,12 +77,6 @@ export function Layout({ tab, setTab, children, onScan, search, setSearch }: Lay
   );
 }
 
-/**
- * Persistent left sidebar for desktop. Fixed (not scrolled or sticky-in-grid) so it
- * never shifts, jumps, or scrolls out of view as page content changes height.
- * Owns search, active-area context, primary navigation, and the account/utility
- * actions that used to live in a separate top header bar.
- */
 function DesktopSidebar({
   tab,
   setTab,
@@ -103,46 +95,39 @@ function DesktopSidebar({
       className="hidden lg:flex lg:flex-col fixed inset-y-0 left-0 z-30 border-r border-border bg-[#171612]"
       style={{ width: SIDEBAR_WIDTH }}
     >
-      <div className="h-20 px-6 border-b border-border flex items-center justify-between">
-        <button onClick={() => setTab('buy')} className="tap flex items-center gap-3 text-left min-w-0">
-          <div className="w-11 h-11 rounded-2xl border border-accent/20 bg-accent/10 flex items-center justify-center shrink-0">
-            <img src="smol.png" alt="Lion Market" className="w-6 h-6 object-contain" />
+      <div className="h-16 px-4 border-b border-border flex items-center">
+        <button onClick={() => setTab('buy')} className="tap flex items-center gap-2.5 min-w-0">
+          <div className="w-9 h-9 rounded-xl border border-accent/20 bg-accent/10 flex items-center justify-center shrink-0">
+            <img src="smol.png" alt="Lion Market" className="w-5 h-5 object-contain" />
           </div>
-          <div className="min-w-0">
-            <div className="font-semibold text-lg tracking-tight truncate">Lion Market</div>
-            <div className="text-xs text-text-faint truncate">Marketplace, pricing, community</div>
-          </div>
+          <span className="font-semibold text-base tracking-tight truncate">Lion Market</span>
         </button>
       </div>
 
-      <div className="px-4 py-4 border-b border-border flex items-center gap-2">
+      <div className="px-4 py-3 border-b border-border flex items-center gap-2">
         <button
           onClick={onOpenScan}
-          className="tap flex-1 flex items-center justify-center gap-2 rounded-[16px] border border-accent/20 bg-accent/10 px-3 py-2.5 text-xs font-semibold text-accent"
+          className="tap flex-1 flex items-center justify-center gap-2 rounded-xl border border-accent/20 bg-accent/10 px-3 py-2 text-xs font-semibold text-accent"
         >
-          <ScanLine size={15} />
+          <ScanLine size={14} />
           Scan
         </button>
 
-        <button className="tap w-10 h-10 shrink-0 rounded-[16px] border border-border bg-surface flex items-center justify-center text-text-muted hover:text-text">
-          <Bell size={16} />
+        <button className="tap w-9 h-9 shrink-0 rounded-xl border border-border bg-surface flex items-center justify-center text-text-muted hover:text-text">
+          <Bell size={15} />
         </button>
 
         <button
-          onClick={() => setTab('sell')}
-          className="tap w-10 h-10 shrink-0 rounded-[16px] bg-accent flex items-center justify-center text-accent-ink"
+          onClick={() => setTab('buy')}
+          className="tap w-9 h-9 shrink-0 rounded-full border border-border bg-surface-3 flex items-center justify-center overflow-hidden"
         >
-          <Plus size={16} />
+          <img src="smol.png" alt="Profile" className="w-4 h-4 object-contain" />
         </button>
-
-        <div className="w-10 h-10 shrink-0 rounded-[16px] border border-border bg-surface-3 flex items-center justify-center overflow-hidden">
-          <img src="smol.png" alt="Profile" className="w-5 h-5 object-contain" />
-        </div>
       </div>
 
-      <div className="px-4 py-5 border-b border-border">
-        <div className="flex items-center gap-2.5 rounded-[20px] border border-border bg-surface px-3.5 py-3">
-          <Search size={16} className="text-text-faint shrink-0" />
+      <div className="px-4 py-4 border-b border-border">
+        <div className="flex items-center gap-2 rounded-xl border border-border bg-surface px-3 py-2.5">
+          <Search size={15} className="text-text-faint shrink-0" />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -151,22 +136,22 @@ function DesktopSidebar({
           />
         </div>
 
-        <div className="mt-4 rounded-[20px] border border-border bg-surface px-4 py-3.5">
-          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-text-faint font-medium">
-            <MapPin size={13} className="text-accent" />
+        <div className="mt-3 rounded-xl border border-border bg-surface px-3.5 py-3">
+          <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-text-faint font-medium">
+            <MapPin size={12} className="text-accent" />
             Active area
           </div>
-          <div className="text-sm font-medium mt-2">{ACTIVE_AREA}</div>
-          <div className="text-xs text-text-muted mt-1">Showing listings within 15 miles. Change area anytime.</div>
+          <div className="text-sm font-medium mt-1.5">{ACTIVE_AREA}</div>
+          <div className="text-[11px] text-text-muted mt-1">Showing listings within 15 miles. Change area anytime.</div>
         </div>
       </div>
 
-      <nav className="px-3 py-4 flex-1">
-        <div className="text-[11px] uppercase tracking-[0.18em] text-text-faint font-semibold px-3 pb-2">
+      <nav className="px-4 py-4 flex-1 overflow-y-auto">
+        <div className="text-[10px] uppercase tracking-[0.16em] text-text-faint font-semibold pb-2">
           Navigation
         </div>
 
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           {NAV.map((n) => (
             <NavButton key={n.id} item={n} active={tab === n.id} onClick={() => setTab(n.id)} />
           ))}
@@ -174,17 +159,17 @@ function DesktopSidebar({
       </nav>
 
       <div className="px-4 py-4 border-t border-border">
-        <div className="rounded-[22px] border border-border bg-surface p-4">
+        <div className="rounded-xl border border-border bg-surface p-3.5">
           <div className="text-sm font-semibold">Quick scan</div>
-          <p className="text-xs text-text-muted mt-2 leading-relaxed">
+          <p className="text-[11px] text-text-muted mt-1.5 leading-relaxed">
             Scan a card to check local listings, live pricing, and Oracle forecasts in one pass.
           </p>
 
           <button
             onClick={onOpenScan}
-            className="tap mt-4 w-full rounded-[18px] bg-accent px-4 py-2.5 text-sm font-semibold text-accent-ink flex items-center justify-center gap-2"
+            className="tap mt-3 w-full rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-accent-ink flex items-center justify-center gap-2"
           >
-            <ScanLine size={15} />
+            <ScanLine size={14} />
             Scan a card
           </button>
         </div>
@@ -199,38 +184,16 @@ function NavButton({ item, active, onClick }: { item: NavItem; active: boolean; 
   return (
     <button
       onClick={onClick}
-      className={`tap w-full rounded-[22px] px-3.5 py-3 text-left transition-colors duration-150 ${
-        active ? 'bg-accent text-accent-ink shadow-soft' : 'text-text-muted hover:bg-surface hover:text-text'
+      className={`tap w-full flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm font-medium transition-colors duration-150 ${
+        active ? 'bg-accent text-accent-ink' : 'text-text-muted hover:bg-surface hover:text-text'
       }`}
     >
-      <div className="flex items-start gap-3">
-        <div
-          className={`mt-0.5 w-10 h-10 rounded-[14px] flex items-center justify-center shrink-0 ${
-            active ? 'bg-accent-ink/10 text-accent-ink' : 'bg-surface-2 text-text-faint'
-          }`}
-        >
-          <Icon size={18} />
-        </div>
-
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center justify-between gap-2">
-            <span className="font-medium text-sm">{item.label}</span>
-            <ChevronRight size={15} className={active ? 'text-accent-ink/70' : 'text-text-faint'} />
-          </div>
-          <div className={`text-xs mt-1 leading-relaxed ${active ? 'text-accent-ink/80' : 'text-text-faint'}`}>
-            {item.blurb}
-          </div>
-        </div>
-      </div>
+      <Icon size={16} className={active ? 'text-accent-ink' : 'text-text-faint'} />
+      {item.label}
     </button>
   );
 }
 
-/**
- * Mobile-only top bar. Desktop has no equivalent — the sidebar already owns
- * search, navigation, and account actions, so a second top bar on desktop
- * would just duplicate it and waste vertical space.
- */
 function MobileHeader({
   tab,
   setTab,
@@ -250,34 +213,34 @@ function MobileHeader({
 }) {
   return (
     <header className="lg:hidden sticky top-0 z-40 border-b border-border bg-bg/92 backdrop-blur">
-      <div className="h-16 px-4 flex items-center gap-3">
+      <div className="h-14 px-3 flex items-center gap-3">
         <button
           onClick={() => setNavOpen((v) => !v)}
-          className="tap w-10 h-10 rounded-full border border-border bg-surface flex items-center justify-center text-text-muted hover:text-text"
+          className="tap w-9 h-9 rounded-full border border-border bg-surface flex items-center justify-center text-text-muted hover:text-text"
         >
-          {navOpen ? <X size={18} /> : <Menu size={18} />}
+          {navOpen ? <X size={17} /> : <Menu size={17} />}
         </button>
 
-        <button onClick={() => setTab('buy')} className="tap flex items-center gap-2.5 shrink-0">
-          <img src="smol.png" alt="Lion Market" className="w-8 h-8 object-contain" />
-          <span className="font-bold text-[15px] tracking-tight">Lion Market</span>
+        <button onClick={() => setTab('buy')} className="tap flex items-center gap-2 shrink-0">
+          <img src="smol.png" alt="Lion Market" className="w-7 h-7 object-contain" />
+          <span className="font-bold text-sm tracking-tight">Lion Market</span>
         </button>
 
         <div className="ml-auto flex items-center gap-2 shrink-0">
-          <div className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-2 text-xs text-text-muted">
-            <MapPin size={13} className="text-accent" />
+          <div className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-2.5 py-1.5 text-[11px] text-text-muted">
+            <MapPin size={12} className="text-accent" />
             {ACTIVE_AREA}
           </div>
 
-          <button className="tap w-10 h-10 rounded-full border border-border bg-surface flex items-center justify-center text-text-muted hover:text-text">
-            <Bell size={17} />
+          <button className="tap w-9 h-9 rounded-full border border-border bg-surface flex items-center justify-center text-text-muted hover:text-text">
+            <Bell size={16} />
           </button>
         </div>
       </div>
 
-      <div className="px-4 pb-3">
-        <div className="flex items-center gap-2.5 rounded-[20px] border border-border bg-surface px-3.5 py-2.5">
-          <Search size={16} className="text-text-faint shrink-0" />
+      <div className="px-3 pb-2.5">
+        <div className="flex items-center gap-2 rounded-[16px] border border-border bg-surface px-3 py-2.5">
+          <Search size={15} className="text-text-faint shrink-0" />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -286,7 +249,7 @@ function MobileHeader({
           />
           <button
             onClick={onOpenScan}
-            className="tap rounded-full border border-accent/20 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-accent shrink-0"
+            className="tap rounded-full border border-accent/20 bg-accent/10 px-2.5 py-1.5 text-[11px] font-semibold text-accent shrink-0"
           >
             Scan
           </button>
@@ -307,15 +270,15 @@ function MobileHeader({
                     setTab(n.id);
                     setNavOpen(false);
                   }}
-                  className={`tap rounded-[20px] px-3 py-3 text-left ${
+                  className={`tap rounded-[16px] px-3 py-2.5 text-left ${
                     active ? 'bg-accent text-accent-ink' : 'bg-surface text-text-muted'
                   }`}
                 >
                   <div className="flex items-center gap-2">
-                    <Icon size={16} />
+                    <Icon size={15} />
                     <span className="text-sm font-medium">{n.label}</span>
                   </div>
-                  <div className={`text-xs mt-1 ${active ? 'text-accent-ink/80' : 'text-text-faint'}`}>
+                  <div className={`text-[11px] mt-1 ${active ? 'text-accent-ink/80' : 'text-text-faint'}`}>
                     {n.blurb}
                   </div>
                 </button>
@@ -331,7 +294,7 @@ function MobileHeader({
 function MobileTabBar({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
   return (
     <nav className="lg:hidden fixed bottom-0 inset-x-0 z-40 px-3 pb-3 pt-2 bg-gradient-to-t from-bg via-bg/95 to-transparent">
-      <div className="mx-auto max-w-xl rounded-[28px] border border-border bg-[#151410]/95 backdrop-blur px-2 py-1.5 shadow-soft">
+      <div className="mx-auto max-w-lg rounded-[22px] border border-border bg-[#151410]/95 backdrop-blur px-2 py-1.5 shadow-soft">
         <div className="flex items-center justify-between gap-1">
           {NAV.map((n) => {
             const Icon = n.icon;
@@ -341,12 +304,12 @@ function MobileTabBar({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
               <button
                 key={n.id}
                 onClick={() => setTab(n.id)}
-                className={`tap flex min-w-0 flex-1 flex-col items-center gap-0.5 rounded-[22px] px-2 py-2 ${
+                className={`tap flex min-w-0 flex-1 flex-col items-center gap-0.5 rounded-[16px] px-2 py-1.5 ${
                   active ? 'bg-accent/18 text-accent' : 'text-text-faint'
                 }`}
               >
-                <Icon size={20} />
-                <span className="text-[11px] font-medium truncate">{n.short}</span>
+                <Icon size={18} />
+                <span className="text-[10px] font-medium truncate">{n.short}</span>
               </button>
             );
           })}

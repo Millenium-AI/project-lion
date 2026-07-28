@@ -12,7 +12,7 @@ import {
   Trophy,
   Users,
 } from 'lucide-react';
-import { threads, profile } from '@/data';
+import { threads, profile, Thread } from '@/data';
 import { Card, Tag, Avatar, PageHeader, Pill } from '@/components/ui';
 
 const FEEDS = ['Hot', 'New', 'Top', 'Local', 'Shared Oracles'] as const;
@@ -42,7 +42,7 @@ export function CrowdTab() {
 
     if (seg === 'following') base = base.filter((_, i) => i % 2 === 0);
 
-    if (feed === 'Top') return [...base].sort((a, b) => b.upvotes - a.upvotes);
+    if (feed === 'Top') return [...base].sort((a, b) => b.votes - a.votes);
     if (feed === 'New') return [...base].reverse();
 
     return base;
@@ -193,10 +193,10 @@ export function CrowdTab() {
   );
 }
 
-function ThreadRow({ thread }: { thread: any }) {
-  const comments = thread.comments ?? thread.replyCount ?? 0;
-  const score = thread.upvotes ?? thread.votes ?? 0;
-  const author = thread.author ?? 'collector';
+function ThreadRow({ thread }: { thread: Thread }) {
+  const comments = thread.comments;
+  const score = thread.votes;
+  const author = thread.author;
   const isOracle = thread.type === 'oracle';
   const isLocal = thread.type === 'local';
 
@@ -225,15 +225,15 @@ function ThreadRow({ thread }: { thread: any }) {
           {thread.title}
         </div>
 
-        {thread.body && (
+        {thread.preview && (
           <p className="text-sm text-text-muted mt-2 line-clamp-2 leading-relaxed">
-            {thread.body}
+            {thread.preview}
           </p>
         )}
 
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mt-3 text-xs text-text-faint">
           <span>posted by u/{author}</span>
-          <span>{thread.area || 'Miami metro'}</span>
+          <span>Miami metro</span>
           <span className="flex items-center gap-1">
             <MessageCircle size={12} />
             {comments} comments

@@ -49,7 +49,17 @@ export function ZipMap({ selectedZip, onHoverZip, onSelectZip }: ZipMapProps) {
   const mapRef = useRef<MLMap | null>(null);
   const hoveredIdRef = useRef<string | number | undefined>(undefined);
   const selectedIdRef = useRef<string | number | undefined>(undefined);
+  const onHoverZipRef = useRef(onHoverZip);
+  const onSelectZipRef = useRef(onSelectZip);
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+
+  useEffect(() => {
+    onHoverZipRef.current = onHoverZip;
+  }, [onHoverZip]);
+
+  useEffect(() => {
+    onSelectZipRef.current = onSelectZip;
+  }, [onSelectZip]);
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -71,7 +81,7 @@ export function ZipMap({ selectedZip, onHoverZip, onSelectZip }: ZipMapProps) {
       }
       hoveredIdRef.current = undefined;
       map.getCanvas().style.cursor = '';
-      onHoverZip(null);
+      onHoverZipRef.current(null);
     };
 
     map.on('error', (e) => {
@@ -132,7 +142,7 @@ export function ZipMap({ selectedZip, onHoverZip, onSelectZip }: ZipMapProps) {
         hoveredIdRef.current = id;
         map.setFeatureState({ source: 'zips', id }, { hover: true });
         map.getCanvas().style.cursor = 'pointer';
-        onHoverZip(String(zip));
+        onHoverZipRef.current(String(zip));
       });
 
       map.on('mouseleave', 'zip-fill', clearHover);
@@ -140,13 +150,8 @@ export function ZipMap({ selectedZip, onHoverZip, onSelectZip }: ZipMapProps) {
       map.on('click', 'zip-fill', (e: MapLayerMouseEvent) => {
         const feature = e.features?.[0] as MapGeoJSONFeature | undefined;
         const zip = feature?.properties?.zip;
-        if (zip) onSelectZip(String(zip));
+        if (zip) onSelectZipRef.current(String(zip));
       });
-
-      if (selectedZip) {
-        selectedIdRef.current = selectedZip;
-        map.setFeatureState({ source: 'zips', id: selectedZip }, { selected: true });
-      }
 
       setStatus('ready');
     });
@@ -155,7 +160,7 @@ export function ZipMap({ selectedZip, onHoverZip, onSelectZip }: ZipMapProps) {
       map.remove();
       mapRef.current = null;
     };
-  }, [onHoverZip, onSelectZip, selectedZip]);
+  }, []);
 
   useEffect(() => {
     const map = mapRef.current;

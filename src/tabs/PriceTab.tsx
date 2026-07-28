@@ -3,10 +3,8 @@ import {
   TrendingUp,
   TrendingDown,
   Flame,
-  Waves,
   Wallet,
   ScanLine,
-  Search,
   Activity,
   Radar,
   BarChart3,
@@ -16,7 +14,6 @@ import {
   Pill,
   SearchBar,
   Card,
-  Chip,
   Tag,
   Trend,
   PageHeader,
@@ -40,7 +37,7 @@ export function PriceTab({ search, onScan }: { search: string; onScan: () => voi
   const filtered = useMemo(() => {
     return priceCards.filter((p) => {
       if (q && !p.name.toLowerCase().includes(q) && !p.set.toLowerCase().includes(q)) return false;
-      if (lang !== 'All' && p.lang !== lang) return false;
+      if (p.lang !== lang) return false;
       return true;
     });
   }, [q, lang]);

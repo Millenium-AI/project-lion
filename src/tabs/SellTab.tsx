@@ -6,16 +6,12 @@ import {
   Check,
   TrendingUp,
   Store,
-  Eye,
-  Bookmark,
-  Tag as TagIcon,
-  MoreHorizontal,
   MapPin,
   Package2,
   Sparkles,
 } from 'lucide-react';
-import { myListings, MyListing, shopStats } from '@/data';
-import { Pill, SearchBar, Card, Tag, StatCard, PageHeader, EmptyState } from '@/components/ui';
+import { myListings, MyListing, shopStats, profile } from '@/data';
+import { SearchBar, Card, Tag, StatCard, PageHeader, EmptyState } from '@/components/ui';
 
 export function SellTab() {
   const [seg, setSeg] = useState<'live' | 'hidden' | 'sold'>('live');
@@ -208,7 +204,7 @@ export function SellTab() {
               <StatCard label="Profile views" value={String(shopStats?.views ?? 0)} />
               <StatCard label="Saved shop" value={String(shopStats?.saves ?? 0)} />
               <StatCard label="Sold this month" value={String(shopStats?.sold ?? 0)} tone="positive" />
-              <StatCard label="Followers" value={String(shopStats?.followers ?? 0)} />
+              <StatCard label="Followers" value={String(profile?.followers ?? 0)} />
             </div>
           </Card>
 
@@ -293,12 +289,9 @@ function SellerRow({
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
             <div className="font-medium text-sm truncate">{item.name}</div>
-            {item.grade && <Tag tone="gold">{item.grade}</Tag>}
             <Tag>{item.condition}</Tag>
           </div>
-          <div className="text-xs text-text-faint mt-1 truncate">
-            {item.set} · {item.number}
-          </div>
+          <div className="text-xs text-text-faint mt-1 truncate">{item.set}</div>
         </div>
 
         <div className="md:text-right">
